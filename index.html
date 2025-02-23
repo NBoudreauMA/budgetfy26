@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,59 +7,134 @@
     <title>Hubbardston Budget FY26 🚀</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="index.html">🏠 Home</a></li>
             <li><a href="revenue.html">💰 Revenue</a></li>
             <li><a href="expenditures.html">📉 Expenditures</a></li>
             <li><a href="capital.html">🏗 Capital Plan</a></li>
+            <li><a href="#faq">❓ FAQ</a></li>
         </ul>
     </nav>
 
+    <!-- Hero Section -->
     <header class="hero">
-        <h1>Hubbardston Budget FY26</h1>
-        <p>Smart Investments, Stronger Community</p>
-        <a href="revenue.html" class="cta-button">Explore the Budget 📊</a>
+        <div class="hero-content">
+            <h1>Hubbardston Budget FY26</h1>
+            <p>Investing in our Community with Transparency & Fiscal Responsibility</p>
+            <a href="revenue.html" class="cta-button">Explore the Budget 📊</a>
+        </div>
     </header>
 
-    <section class="executive-summary">
-        <h2>Executive Summary</h2>
-        <p><strong>From the Office of the Town Administrator, Nathan R. Boudreau, MPA, MCPPO</strong></p>
-        <p>As we move into FY26, Hubbardston remains committed to fiscal responsibility while ensuring top-quality services for our community. Our balanced budget prioritizes essential services, education, public safety, and infrastructure improvements.</p>
-        
-        <div class="highlights-grid">
-            <div class="highlight-box">
-                <h3>💡 Balanced Budget</h3>
-                <p>Strategic investments while maintaining financial stability.</p>
+    <!-- Interactive Dashboard Section -->
+    <section class="dashboard">
+        <h2>📊 Hubbardston Budget Dashboard</h2>
+        <div class="dashboard-grid">
+            <div class="dashboard-item">
+                <h3>💵 Total Budget</h3>
+                <p>$13,575,784</p>
             </div>
-            <div class="highlight-box">
-                <h3>🏫 Education First</h3>
-                <p>Over 60% of our budget supports Hubbardston schools.</p>
+            <div class="dashboard-item">
+                <h3>🏫 Education Allocation</h3>
+                <p>60% of Total Budget</p>
             </div>
-            <div class="highlight-box">
-                <h3>🚔 Public Safety</h3>
-                <p>Investment in police, fire, and emergency services.</p>
+            <div class="dashboard-item">
+                <h3>🚔 Public Safety Allocation</h3>
+                <p>20% of Total Budget</p>
             </div>
-            <div class="highlight-box">
-                <h3>🛣 Infrastructure</h3>
-                <p>Funding for road repairs, public safety buildings, and municipal improvements.</p>
+            <div class="dashboard-item">
+                <h3>💡 Infrastructure & Capital</h3>
+                <p>10% of Total Budget</p>
             </div>
         </div>
     </section>
 
+    <!-- Interactive Budget Allocation Chart -->
     <section class="interactive-charts">
-        <h2>📊 Where Does the Money Go?</h2>
+        <h2>📊 Budget Allocation Breakdown</h2>
         <canvas id="budgetChart"></canvas>
     </section>
 
+    <!-- Budget Transparency Section -->
+    <section class="transparency">
+        <h2>🔍 Where Your Money Goes</h2>
+        <p>We are committed to **100% transparency** in how Hubbardston allocates taxpayer dollars. Click the sections below to see detailed spending.</p>
+        
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-header">💰 Tax Revenue Breakdown</button>
+                <div class="accordion-content">
+                    <p>Real estate taxes make up **89%** of our total revenue.</p>
+                    <ul>
+                        <li>📈 Tax Levy: $11,918,883</li>
+                        <li>🏛 Excluded Debt: $197,357</li>
+                        <li>🏛 State Aid: $400,820</li>
+                        <li>💵 Local Receipts: $750,000</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">🏫 School Funding</button>
+                <div class="accordion-content">
+                    <p>Education accounts for **60%** of our budget, funding **Quabbin Regional School District & Monty Tech.**</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">🚓 Public Safety Spending</button>
+                <div class="accordion-content">
+                    <p>Police, Fire, and EMS services receive **20%** of total expenditures, ensuring a safe and secure Hubbardston.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">🏗 Capital & Infrastructure</button>
+                <div class="accordion-content">
+                    <p>Investments in roads, municipal facilities, and equipment upgrades total **$1.3 million.**</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <h2>❓ Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <button class="faq-question">📌 How is the budget developed?</button>
+            <div class="faq-answer">
+                <p>The **Select Board, Finance Committee, and Town Administrator** work together to develop the budget based on projected revenue and community needs.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">💵 Why is my tax bill increasing?</button>
+            <div class="faq-answer">
+                <p>The tax levy increases by **2.5% annually** under Proposition 2½ to sustain essential services and capital projects.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">🏗 What capital projects are planned?</button>
+            <div class="faq-answer">
+                <p>Major planned projects include **Public Safety Building improvements, road repairs, and facility upgrades**.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
     <section class="cta-section">
         <h2>📢 Get Involved</h2>
-        <p>We encourage residents to engage in the budget process, attend public hearings, and participate in discussions.</p>
+        <p>We encourage all residents to engage in the budget process, attend public hearings, and provide feedback.</p>
         <p>📩 Contact: <strong>admin@hubbardstonma.us</strong> | 📞 978-928-1400 x200</p>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>© 2025 Town of Hubbardston - Budget Portal</p>
     </footer>
@@ -67,12 +143,12 @@
         document.addEventListener("DOMContentLoaded", function() {
             const ctx = document.getElementById("budgetChart").getContext("2d");
             new Chart(ctx, {
-                type: "doughnut",
+                type: "pie",
                 data: {
                     labels: ["Education", "Public Safety", "Public Works", "General Government"],
                     datasets: [{
                         data: [60, 20, 10, 10],
-                        backgroundColor: ["#2a7d2e", "#ff5733", "#1e5b24", "#ffd700"]
+                        backgroundColor: ["#1e3a5f", "#ff5733", "#1e5b24", "#ffd700"]
                     }]
                 },
                 options: {
@@ -80,12 +156,21 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: "FY26 Budget Allocation"
+                            text: "FY26 Budget Allocation Breakdown"
                         }
                     }
                 }
             });
+
+            $(".accordion-header").click(function() {
+                $(this).next(".accordion-content").slideToggle();
+            });
+
+            $(".faq-question").click(function() {
+                $(this).next(".faq-answer").slideToggle();
+            });
         });
     </script>
+
 </body>
 </html>
