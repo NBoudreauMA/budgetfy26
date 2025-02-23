@@ -6,18 +6,44 @@
     <title>Hubbardston FY26 Budget | Transparency Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        :root {
+            --primary: #2a7d2e;
+            --secondary: #1e5b24;
+            --accent: #ffd700;
+            --text: #333;
+            --background: #f8f9fa;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --radius: 10px;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f4f7f6;
-            color: #333;
+            background: var(--background);
+            color: var(--text);
             line-height: 1.6;
         }
 
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .header img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
         .navbar {
-            background: rgba(20, 77, 35, 0.98);
-            padding: 12px 5%;
+            background: var(--primary);
+            padding: 10px 5%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,111 +51,163 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px var(--shadow);
+            border-bottom: 2px solid var(--accent);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffd700;
+            color: var(--accent);
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: 0 3px 6px var(--shadow);
         }
 
         .toggle-btn {
-            background: #144d23;
+            background: var(--primary);
             color: white;
-            border: none;
-            padding: 12px 18px;
+            padding: 1rem;
+            font-weight: bold;
             cursor: pointer;
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-bottom: 10px;
-            display: block;
-            width: 100%;
-            text-align: left;
-            transition: background 0.3s ease;
+            border-radius: var(--radius);
+            transition: 0.3s;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .toggle-btn:hover {
-            background: #116d2f;
+            background: var(--secondary);
         }
 
         .section-content {
             display: none;
-            padding-top: 15px;
+            padding: 1rem;
             animation: fadeIn 0.3s ease-in-out;
         }
 
-        .section {
-            max-width: 1100px;
-            margin: 3rem auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 20px;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+            background: var(--white);
+            padding: 1rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 6px var(--shadow);
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (max-width: 768px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <div class="header">
+        <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Logo">
+        <h1>Hubbardston FY26 Budget Transparency Dashboard</h1>
+    </div>
+
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="index.html">🏠 Home</a></li>
-            <li><a href="revenue.html">💰 Revenue</a></li>
-            <li><a href="expenditures.html">📉 Expenditures</a></li>
-            <li><a href="capital.html">🏗 Capital</a></li>
+            <li><a href="#revenue">💰 Revenue</a></li>
+            <li><a href="#expenditures">📉 Expenditures</a></li>
+            <li><a href="#capital">🏗 Capital Plan</a></li>
         </ul>
     </nav>
 
     <section class="section">
-        <button class="toggle-btn" onclick="toggleSection('summary-content')">📄 Executive Summary ▼</button>
-        <div id="summary-content" class="section-content">
-            <p><strong>Fiscal Year 2026 Budget</strong></p>
-            <p>This year’s budget reflects a balanced approach—preserving core operations, modernizing town services, and planning for the future—while remaining mindful of taxpayer impact.</p>
-            <p><strong>📊 Total FY26 Budget:</strong> $11.85 million</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <button class="toggle-btn" onclick="toggleSection('dashboard-content')">📊 Budget Transparency Dashboard ▼</button>
-        <div id="dashboard-content" class="section-content">
-            <div class="dashboard-item"><h3>Total FY26 Budget</h3><p>$11.85M</p></div>
-            <div class="dashboard-item"><h3>Revenue Growth</h3><p>📈 5.71% Increase</p></div>
-        </div>
-    </section>
-
-    <section class="section">
-        <button class="toggle-btn" onclick="toggleSection('charts-content')">📊 Where the Money Comes From & Goes ▼</button>
+        <div class="toggle-btn" onclick="toggleSection('charts-content')">📊 Budget Analysis ▼</div>
         <div id="charts-content" class="section-content">
-            <canvas id="revenueChart"></canvas>
-            <canvas id="expenditureChart"></canvas>
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <p class="chart-title">Revenue Breakdown</p>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <p class="chart-title">Expenditure Breakdown</p>
+                    <canvas id="expenditureChart"></canvas>
+                </div>
+            </div>
         </div>
     </section>
 
     <script>
         function toggleSection(id) {
             var content = document.getElementById(id);
-            content.style.display = content.style.display === "none" || content.style.display === "" ? "block" : "none";
+            content.style.display = (content.style.display === "none" || content.style.display === "") ? "block" : "none";
         }
+
+        function renderCharts() {
+            setTimeout(() => {
+                var revenueCtx = document.getElementById('revenueChart').getContext('2d');
+                var expenditureCtx = document.getElementById('expenditureChart').getContext('2d');
+
+                new Chart(revenueCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Tax Levy', 'State Aid', 'Local Receipts'],
+                        datasets: [{
+                            label: 'Revenue Sources',
+                            data: [9276259, 730906, 1619684],
+                            backgroundColor: ['#2a7d2e', '#1e5b24', '#34d399']
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+
+                new Chart(expenditureCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Education', 'Public Safety', 'Public Works', 'General Government'],
+                        datasets: [{
+                            data: [60, 20, 10, 10],
+                            backgroundColor: ['#2a7d2e', '#ff5733', '#34d399', '#ffd700']
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }, 500);
+        }
+
+        window.onload = renderCharts;
     </script>
 </body>
 </html>
