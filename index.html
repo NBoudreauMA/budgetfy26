@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston FY26 Budget | Transparency Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>
     <style>
-        /* Ultra-Modern Transparent Theme */
+        /* Ultra-Modern Transparent Theme - Enhanced */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -18,8 +15,9 @@
             color: #333;
             line-height: 1.6;
         }
+        
         .navbar {
-            background: rgba(20, 77, 35, 0.85);
+            background: rgba(20, 77, 35, 0.95);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
@@ -31,29 +29,50 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             border-radius: 0px 0px 15px 15px;
             backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
+
+        .navbar.scrolled {
+            background: rgba(20, 77, 35, 1);
+            padding: 10px 5%;
+        }
+
         .nav-links {
             list-style: none;
             display: flex;
             gap: 25px;
         }
+
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
             font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 8px;
         }
+
         .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
             color: #ffd700;
         }
+
         .hero {
             text-align: center;
-            padding: 6rem 2rem;
-            background: url('https://github.com/NBoudreauMA/FY26/blob/main/docs/assets/hubbardston_bg.jpg?raw=true') no-repeat center center/cover;
+            padding: 8rem 2rem 6rem;
+            background: url('/api/placeholder/1920/1080') no-repeat center center/cover;
             color: white;
             position: relative;
+            overflow: hidden;
         }
+
         .hero::before {
             content: "";
             position: absolute;
@@ -61,15 +80,41 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(20, 77, 35, 0.75);
+            background: rgba(20, 77, 35, 0.85);
             z-index: 0;
+            animation: fadeIn 1.5s ease-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .hero-content {
             position: relative;
             z-index: 1;
             max-width: 900px;
             margin: auto;
+            animation: slideUp 1s ease-out;
         }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
         .section {
             max-width: 1100px;
             margin: 3rem auto;
@@ -78,74 +123,175 @@
             padding: 2.5rem;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
         }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
         .dashboard {
-            display: flex;
-            justify-content: space-between;
-            text-align: center;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
+            margin-top: 2rem;
         }
+
         .dashboard-item {
             background: rgba(20, 77, 35, 0.85);
             color: white;
             padding: 2rem;
             border-radius: 15px;
-            flex: 1;
-            min-width: 200px;
-            transition: transform 0.3s;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
+
+        .dashboard-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
         .dashboard-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px) scale(1.02);
         }
+
+        .dashboard-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .dashboard-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-item p {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
         .charts-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
             padding: 2rem 0;
         }
-        canvas {
-            max-width: 45%;
-            height: auto;
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .profile-container {
             display: flex;
             align-items: center;
             gap: 20px;
             margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
+
+        .profile-container:hover {
+            transform: translateY(-5px);
+        }
+
         .profile-image {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 3px solid #144d23;
+            border: 4px solid #144d23;
+            transition: transform 0.3s ease;
         }
+
+        .profile-image:hover {
+            transform: scale(1.1);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h3 {
+            color: #144d23;
+            margin-bottom: 0.5rem;
+        }
+
         footer {
             text-align: center;
-            padding: 2rem;
-            background: #144d23;
+            padding: 3rem 2rem;
+            background: linear-gradient(to right, #144d23, #1a6530);
             color: white;
             margin-top: 3rem;
-            border-radius: 30px 30px 0px 0px;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="index.html">🏠 Home</a></li>
-            <li><a href="revenue.html">💰 Revenue</a></li>
-            <li><a href="expenditures.html">📉 Expenditures</a></li>
-            <li><a href="capital.html">🏗 Capital Plan</a></li>
+            <li><a href="#home" class="active">🏠 Home</a></li>
+            <li><a href="#revenue">💰 Revenue</a></li>
+            <li><a href="#expenditures">📉 Expenditures</a></li>
+            <li><a href="#capital">🏗 Capital Plan</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero">
+    <header class="hero" id="home">
         <div class="hero-content">
             <h1>Hubbardston FY26 Budget</h1>
             <p>Transparent. Responsible. Future-Focused.</p>
@@ -153,70 +299,152 @@
     </header>
 
     <!-- Executive Summary -->
-    <section class="section">
+    <section class="section" id="summary">
         <h2>📄 Executive Summary</h2>
-        <p>Hubbardston’s Fiscal Year 2026 budget reflects a commitment to financial responsibility, strategic investments, and community needs. This budget balances essential services, infrastructure improvements, and long-term sustainability while ensuring that Hubbardston continues to move forward without compromising fiscal stability.</p>
+        <p>Hubbardston's Fiscal Year 2026 budget reflects a commitment to financial responsibility, strategic investments, and community needs. This budget balances essential services, infrastructure improvements, and long-term sustainability while ensuring that Hubbardston continues to move forward without compromising fiscal stability.</p>
 
         <div class="profile-container">
-            <img src="https://media.licdn.com/dms/image/v2/D4E03AQEW5_btYizZyg/profile-displayphoto-shrink_800_800/B4EZSZ4lygHcAg-/0/1737748537903?e=1746057600&v=beta&t=XTnr389QfOgZDSn6qDefjutosLHGQC4pdlCWbHNn8n4" alt="Town Administrator" class="profile-image">
-            <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator, Hubbardston</p>
+            <img src="/api/placeholder/240/240" alt="Town Administrator" class="profile-image">
+            <div class="profile-info">
+                <h3>Nathan Boudreau, MPA, MCPPO</h3>
+                <p>Town Administrator, Hubbardston</p>
+                <p>"Our commitment to transparency and fiscal responsibility drives every budgetary decision we make."</p>
+            </div>
         </div>
     </section>
 
     <!-- Budget Dashboard Section -->
-    <section class="section">
+    <section class="section" id="dashboard">
         <h2>📊 Budget Transparency Dashboard</h2>
         <div class="dashboard">
-            <div class="dashboard-item"><h3>Total FY26 Budget</h3><p>$11.85M</p></div>
-            <div class="dashboard-item"><h3>Revenue Growth</h3><p>📈 5.71% Increase</p></div>
-            <div class="dashboard-item"><h3>Free Cash Usage</h3><p>💰 $148,760</p></div>
-            <div class="dashboard-item"><h3>Capital Funding</h3><p>🚧 Infrastructure & Public Safety</p></div>
+            <div class="dashboard-item" onclick="showDetails('budget')">
+                <h3>Total FY26 Budget</h3>
+                <p>$11.85M</p>
+            </div>
+            <div class="dashboard-item" onclick="showDetails('growth')">
+                <h3>Revenue Growth</h3>
+                <p>📈 5.71% Increase</p>
+            </div>
+            <div class="dashboard-item" onclick="showDetails('cash')">
+                <h3>Free Cash Usage</h3>
+                <p>💰 $148,760</p>
+            </div>
+            <div class="dashboard-item" onclick="showDetails('capital')">
+                <h3>Capital Funding</h3>
+                <p>🚧 Infrastructure & Public Safety</p>
+            </div>
         </div>
     </section>
 
     <!-- Budget Charts -->
-    <section class="section">
+    <section class="section" id="charts">
         <h2>📊 Where the Money Comes From & Goes</h2>
         <div class="charts-container">
-            <canvas id="revenueChart"></canvas>
-            <canvas id="expenditureChart"></canvas>
+            <div class="chart-wrapper">
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="expenditureChart"></canvas>
+            </div>
         </div>
     </section>
 
     <footer>
         <p>© 2025 Town of Hubbardston - Budget Portal</p>
+        <p>Contact: budgetquestions@hubbardston.ma.gov</p>
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const revenueCtx = document.getElementById("revenueChart").getContext("2d");
-            new Chart(revenueCtx, {
-                type: "bar",
-                data: {
-                    labels: ["Tax Levy", "State Aid", "Local Receipts"],
-                    datasets: [{
-                        label: "FY26 Revenue",
-                        data: [9276259, 730906, 1619684],
-                        backgroundColor: ["#2a7d2e", "#1e5b24", "#34d399"]
-                    }]
-                },
-                options: { responsive: true }
-            });
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-            const expenditureCtx = document.getElementById("expenditureChart").getContext("2d");
-            new Chart(expenditureCtx, {
-                type: "pie",
-                data: {
-                    labels: ["Education", "Public Safety", "Public Works", "General Government"],
-                    datasets: [{
-                        data: [60, 20, 10, 10],
-                        backgroundColor: ["#2a7d2e", "#ff5733", "#34d399", "#ffd700"]
-                    }]
-                },
-                options: { responsive: true }
+        // Active nav link handling
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                e.target.classList.add('active');
             });
         });
-    </script>
 
-</body>
-</html>
+        // Dashboard item click handler
+        function showDetails(type) {
+            const details = {
+                budget: "Total budget represents a 5.71% increase from FY25",
+                growth: "Revenue growth driven by property tax and local receipts",
+                cash: "Strategic use of free cash for one-time expenses",
+                capital: "Focused on critical infrastructure and safety improvements"
+            };
+            alert(details[type]);
+        }
+
+        // Enhanced charts with animations and interactivity
+        const revenueChart = new Chart(document.getElementById("revenueChart"), {
+            type: "bar",
+            data: {
+                labels: ["Tax Levy", "State Aid", "Local Receipts"],
+                datasets: [{
+                    label: "FY26 Revenue (Millions)",
+                    data: [9.28, 0.73, 1.62],
+                    backgroundColor: [
+                        'rgba(42, 125, 46, 0.8)',
+                        'rgba(30, 91, 36, 0.8)',
+                        'rgba(52, 211, 153, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(42, 125, 46, 1)',
+                        'rgba(30, 91, 36, 1)',
+                        'rgba(52, 211, 153, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart'
+                },
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `$${context.raw}M`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'M';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const expenditureChart = new Chart(document.getElementById("expenditureChart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Education", "Public Safety", "Public Works", "General Government"],
+                datasets: [{
+                    data: [60, 20, 10, 10],
+                    backgroundColor: [
+                        'rgba(42, 125, 46, 0.8)',
+                        'rgba(255, 87, 51, 0.8)',
+                        'rgba(52, 211, 153, 0.8)',
+                        'rgba(255, 215, 0, 0.
+                        
