@@ -1,27 +1,1150 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expenditures - Hubbardston Budget</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Hubbardston FY26 Budget | Expenditures</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f7f6;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(20, 77, 35, 0.98);
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 1000;
+            border-radius: 0px 0px 10px 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffd700;
+        }
+
+        .section {
+            max-width: 1100px;
+            margin: 3rem auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .search-bar {
+            margin-bottom: 1rem;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .data-table th, .data-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: #144d23;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #144d23;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Navigation Bar -->
     <nav class="navbar">
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/NBoudreauMA/budgetfy26/refs/heads/main/CIP%20CCP.png" alt="Hubbardston Logo" width="120px">
+        </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="revenue.html">Revenue</a></li>
-            <li><a href="expenditures.html">Expenditures</a></li>
-            <li><a href="capital.html">Capital Plan</a></li>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="revenue.html">💰 Revenue</a></li>
+            <li><a href="expenditures.html">📉 Expenditures</a></li>
+            <li><a href="capital.html">🏗 Capital Plan</a></li>
         </ul>
     </nav>
 
+    <!-- Expenditures Section -->
     <section class="section">
-        <h2>Expenditure Overview</h2>
-        <canvas id="expenditureChart"></canvas>
+        <h2>📉 FY26 Expenditures by Department</h2>
+        <p>This page provides a department-wise breakdown of the town's expenditures.</p>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    <!-- Dynamic Sections for Each Department -->
+    <section class="section"><h3>Moderator - 114</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Moderator - 114</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Select Board -122</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Select Board -122</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Town Admin - 129</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Town Admin - 129</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Finance Committee - 131</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Finance Committee - 131</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Accountant - 135</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Accountant - 135</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Assessor - 141</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Assessor - 141</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Treasurer Collector - 149</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Treasurer Collector - 149</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Information Technology - 155</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Information Technology - 155</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Town Clerk - 161</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Town Clerk - 161</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Building & Maintenance - 192</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Building &amp; Maintenance - 192</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>PUBLIC SAFETY</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PUBLIC SAFETY</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Police - 210</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Police - 210</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Fire - 220</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fire - 220</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Land Use - 241</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Land Use - 241</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Emergency Management - 291</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Emergency Management - 291</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Animal Control - 292</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Animal Control - 292</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Tree Warden - 294</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tree Warden - 294</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Dispatch - 299</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dispatch - 299</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>EDUCATION</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EDUCATION</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>PUBLIC WORKS</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PUBLIC WORKS</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>DPW</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DPW</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Snow and Ice - 423</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Snow and Ice - 423</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Street Lights - 424</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Street Lights - 424</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Cemetery - 491</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cemetery - 491</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>HUMAN SERVICES</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HUMAN SERVICES</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Senior Center - 541</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Senior Center - 541</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Veterans - 543</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Veterans - 543</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>CULTURE & RECREATION</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CULTURE &amp; RECREATION</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Library - 610</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Library - 610</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Recreation - 630</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Recreation - 630</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Agricultural Commission - 690</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Agricultural Commission - 690</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Historical Commission - 691</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Historical Commission - 691</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>DEBT</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DEBT</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>LIABILITIES & ASSESSMENTS</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LIABILITIES &amp; ASSESSMENTS</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Cherry Sheet Assessment - 820</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cherry Sheet Assessment - 820</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Worcester Regional Retirement - 911</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Worcester Regional Retirement - 911</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Health insurance - 914</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Health insurance - 914</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Medicare - 916</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Medicare - 916</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Liability Insurance - 945</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Liability Insurance - 945</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>Offsets and Overlay - 999</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Offsets and Overlay - 999</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section><section class="section"><h3>GRAND TOTAL</h3><table border="1" class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Category</th>
+      <th>FY24_Actual</th>
+      <th>FY25_Requested</th>
+      <th>FY25_Actual</th>
+      <th>FY26_Dept</th>
+      <th>FY26_Admin</th>
+      <th>Change_Dollars</th>
+      <th>Change_Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GRAND TOTAL</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table></section>
+
+    <footer>
+        <p>© 2025 Town of Hubbardston - Budget Portal</p>
+    </footer>
+
 </body>
 </html>
