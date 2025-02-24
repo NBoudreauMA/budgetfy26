@@ -1,0 +1,327 @@
+Index,Category,Subcategory,Code,Type,FY24_Actual,FY25_Requested,FY25_Actual,FY26_Dept,FY26_Admin,Change_Dollars,Change_Percent
+0.0,Moderator - 114,,,,,,,,,,nan
+1.0,Moderator - 114,5100.0,Personnel,,,,,,,,nan
+2.0,Moderator - 114,,,Stipend,$100,$100,$100,$100,$100,$0,0%
+3.0,Moderator - 114,,,TOTAL,$100,$100,$100,$100,$100,$0,0%
+4.0,Select Board -122,,,,,,,,,,nan
+5.0,Select Board -122,5100.0,Personnel,,,,,,,,nan
+6.0,Select Board -122,,,Executive Assistant,"$28,111","$28,673","$28,673","$36,870","$31,894","$3,221",11%
+7.0,Select Board -122,5110.0,Employee Support,,,,,,,,nan
+8.0,Select Board -122,,,Expenses,$800,$800,$800,$800,$800,$0,0%
+9.0,Select Board -122,5200.0,Services,,,,,,,,nan
+10.0,Select Board -122,,,Binding of Records,$250,$0,$0,$0,$0,$0,0%
+11.0,Select Board -122,,,Advertising,"$1,500","$1,500","$1,500","$1,500","$1,000",-$500,-33%
+12.0,Select Board -122,,,,,,,,,,nan
+13.0,Select Board -122,,,Legal,"$40,000","$40,000","$40,000","$40,000","$40,000",$0,0%
+14.0,Select Board -122,,,Town Clock Maint.,"$1,000",$0,$0,$0,$0,$0,0%
+15.0,Select Board -122,5400.0,Supplies,,,,,,,,nan
+16.0,Select Board -122,,,Postage,"$1,000","$1,000","$1,000","$1,000","$6,000","$5,000",500%
+17.0,Select Board -122,,,Office Supplies,"$2,500","$2,500","$2,500","$2,500","$2,500",$0,0%
+18.0,Select Board -122,,,Town Report,$500,$500,$500,$500,$500,$0,0%
+19.0,Select Board -122,,,Memorial Day,"$1,500","$1,500","$1,500","$3,000","$1,500",$0,0%
+20.0,Select Board -122,,,TOTAL,"$77,161","$76,473","$76,473","$86,170","$84,194","$7,721",10%
+21.0,Town Admin - 129,,,,,,,,,,nan
+22.0,Town Admin - 129,,Personnel,,,,,,,,nan
+23.0,Town Admin - 129,,,Salary,"$110,000","$112,200","$112,200","$112,200","$115,566","$3,366",3%
+24.0,Town Admin - 129,5110.0,Employee Support,,,,,,,,nan
+25.0,Town Admin - 129,,,Cell Phone Stipend,$600,$600,$600,$600,$600,$0,0%
+26.0,Town Admin - 129,,,Expenses,"$6,600","$7,600","$6,600","$8,000","$6,600",$0,0%
+27.0,Town Admin - 129,,,TOTAL,"$121,253","$120,400","$119,400","$120,800","$122,766","$3,366",3%
+28.0,Finance Committee - 131,,,,,,,,,,nan
+29.0,Finance Committee - 131,5110.0,Employee Support,,,,,,,,nan
+30.0,Finance Committee - 131,,,FC Expenses,$200,$200,$200,$200,$200,$0,0%
+31.0,Finance Committee - 131,5700.0,Other,,,,,,,,nan
+32.0,Finance Committee - 131,,,FC Reserve Fund,"$30,000","$30,000","$30,000","$30,000","$30,000",$0,0%
+33.0,Finance Committee - 131,,,TOTAL,"$30,200","$30,200","$30,200","$30,000","$30,200",$0,0%
+34.0,Accountant - 135,,,,,,,,,,nan
+35.0,Accountant - 135,5200.0,Services,,,,,,,,nan
+36.0,Accountant - 135,,,Accountant Services,"$23,500","$23,970","$23,970","$24,929","$24,449",$479,2%
+37.0,Accountant - 135,,,Annual Audit,"$19,500","$19,500","$19,500","$19,500","$19,500",$0,0%
+38.0,Accountant - 135,5400.0,Supplies,,,,,,,,nan
+39.0,Accountant - 135,,,Accountant Expense,$300,$500,$300,$800,$300,$0,0%
+40.0,Accountant - 135,5110.0,Employee Support,,,,,,,,nan
+41.0,Accountant - 135,,,Travel,"$1,500","$1,500",$0,$0,$0,$0,0%
+42.0,Accountant - 135,,,TOTAL,"$44,800","$45,470","$43,770","$45,229","$44,249",$479,1%
+43.0,Assessor - 141,,,,,,,,,,nan
+44.0,Assessor - 141,5110.0,Employee Support,,,,,,,,nan
+45.0,Assessor - 141,,,Expenses (association dues),$275,$275,$275,$275,$275,$0,0%
+46.0,Assessor - 141,5200.0,Services,,,,,,,,nan
+47.0,Assessor - 141,,,Assessing Services,"$73,500","$75,000","$75,000","$79,380","$76,500","$1,500",2%
+48.0,Assessor - 141,,,Assistant,"$10,000","$20,000","$12,000","$12,000","$12,000",$0,0%
+49.0,Assessor - 141,,,TOTAL,"$83,775","$95,275","$87,275","$91,655","$88,775","$1,500",2%
+50.0,Treasurer Collector - 149,,,,,,,,,,nan
+51.0,Treasurer Collector - 149,5100.0,Personnel,,,,,,,,nan
+52.0,Treasurer Collector - 149,,,Salary,"$65,000","$66,300","$66,300","$68,952","$70,112","$3,812",6%
+53.0,Treasurer Collector - 149,,,Certification,"$1,000","$1,000","$1,000","$1,000","$1,000",$0,0%
+54.0,Treasurer Collector - 149,,,Assistant Treasurer Collector,"$42,204","$43,048","$43,048","$44,770","$43,909",$861,2%
+55.0,Treasurer Collector - 149,5110.0,Employee Support,,,,,,,,nan
+56.0,Treasurer Collector - 149,,,Expenses (Dues and Workshops),$870,"$13,000","$1,300","$1,300","$1,300",$0,0%
+57.0,Treasurer Collector - 149,5200.0,Services,,,,,,,,nan
+58.0,Treasurer Collector - 149,,,Payroll Services,"$3,500","$3,500","$3,500","$4,500","$3,500",$0,0%
+59.0,Treasurer Collector - 149,,,Expenses (Veri and Bank Fees),"$4,800","$4,800","$4,800","$4,800","$4,800",$0,0%
+60.0,Treasurer Collector - 149,5400.0,Supplies,,,,,,,,nan
+61.0,Treasurer Collector - 149,,,Expenses (Postage and Supplies),"$7,300","$7,450","$7,450","$7,450","$5,450","-$2,000",-27%
+62.0,Treasurer Collector - 149,5700.0,Other,,,,,,,,nan
+63.0,Treasurer Collector - 149,,,Tax Title,"$2,000","$2,000","$1,000","$2,000","$1,000",$0,0%
+64.0,Treasurer Collector - 149,,,TOTAL,"$126,674","$141,098","$128,398","$134,772","$131,071","$2,673",2%
+65.0,Information Technology - 155,,,,,,,,,,nan
+66.0,Information Technology - 155,5200.0,Services,,,,,,,,nan
+67.0,Information Technology - 155,,,IT Maintenance,"$70,000","$80,000","$78,000","$85,000","$85,000","$7,000",9%
+68.0,Information Technology - 155,,,Copier,"$3,000","$3,000","$3,000","$3,000","$3,000",$0,0%
+69.0,Information Technology - 155,,,Website,"$3,000","$3,000","$3,000","$3,000","$3,000",$0,0%
+70.0,Information Technology - 155,,,TOTAL,"$76,000","$86,000","$84,000","$91,000","$91,000","$7,000",8%
+71.0,Town Clerk - 161,,,,,,,,,,nan
+72.0,Town Clerk - 161,5100.0,Personnel,,,,,,,,nan
+73.0,Town Clerk - 161,,,Town Cerk Salary,"$47,500","$60,000","$55,500","$57,720","$57,720","$2,220",4%
+74.0,Town Clerk - 161,,,Election Wages,"$3,375","$4,000","$4,000","$8,000","$6,000","$2,000",50%
+75.0,Town Clerk - 161,5110.0,Employee Support,,,,,,,,nan
+76.0,Town Clerk - 161,,,"Expenses (Conf, Dues, Mileage)",$870,"$1,200","$1,200","$1,200","$1,200",$0,0%
+77.0,Town Clerk - 161,5200.0,Services,,,,,,,,nan
+78.0,Town Clerk - 161,,,"Expenses (Binding, Safe Deposit)",$750,$750,$750,"$2,795","$1,750","$1,000",133%
+79.0,Town Clerk - 161,5400.0,Supplies,,"$5,500","$5,500","$5,500","$5,500","$5,000",-$500,-9%
+80.0,Town Clerk - 161,,,,,,,,,,nan
+81.0,Town Clerk - 161,,,Supplies,"$4,000","$4,000","$4,000","$4,000","$2,500","-$1,500",-38%
+82.0,Town Clerk - 161,,,TOTAL,"$61,995","$75,450","$70,950","$79,215","$74,170","$3,220",5%
+83.0,Building & Maintenance - 192,,,,,,,,,,nan
+84.0,Building & Maintenance - 192,5100.0,Personnel,,,,,,,,nan
+85.0,Building & Maintenance - 192,,,Custodian,"$10,140","$10,140","$10,343","$17,357","$16,861","$6,518",63%
+86.0,Building & Maintenance - 192,5200.0,Services,,,,,,,,nan
+87.0,Building & Maintenance - 192,,,Utiities and Maintenance,"$31,000","$31,000","$31,000","$41,000","$40,000","$9,000",29%
+88.0,Building & Maintenance - 192,,,Phone,"$6,500","$6,500","$6,500","$5,500","$5,500","-$1,000",-15%
+89.0,Building & Maintenance - 192,,,TOTAL,"$47,640","$47,640","$47,843","$63,857","$62,361","$14,518",30%
+90.0,Building & Maintenance - 192,,,,,,,,,,nan
+91.0,Building & Maintenance - 192,,,,"$669,598","$718,106","$688,408","$742,797","$728,886","$40,478",6%
+92.0,Building & Maintenance - 192,,,,,,,,,,nan
+93.0,PUBLIC SAFETY,,,,,,,,,,nan
+94.0,Police - 210,,,,,,,,,,nan
+95.0,Police - 210,5100.0,Personnel,,,,,,,,nan
+96.0,Police - 210,,,Police Chief Salary,"$96,500","$98,430","$98,430","$101,383","$101,383","$2,953",3%
+97.0,Police - 210,,,Police Wages,"$525,636","$536,739","$505,000","$511,345","$510,050","$5,050",1%
+98.0,Police - 210,,,Police Assistant,"$16,699","$21,026","$21,026","$21,026","$21,423",$397,2%
+99.0,Police - 210,5110.0,Employee Support,,,,,,,,nan
+100.0,Police - 210,,,Police Training Expense,"$2,000","$2,000","$2,000","$2,000","$2,000",$0,0%
+101.0,Police - 210,,,Police Education,"$6,400","$9,500","$8,000","$7,000","$5,500","-$2,500",-31%
+102.0,Police - 210,,,Police Equipment,"$3,300","$3,300","$3,300","$9,100","$9,100","$5,800",176%
+103.0,Police - 210,,,Stipends & Allowances,"$18,850","$25,300","$18,850","$13,750","$11,000","-$7,850",-42%
+104.0,Police - 210,,,Mileage,$500,$500,$500,$500,$500,$0,0%
+105.0,Police - 210,5200.0,Services,,,,,,,,nan
+106.0,Police - 210,,,Police Maintenance,"$4,320","$4,820","$4,820","$4,820","$4,820",$0,0%
+107.0,Police - 210,,,Police Vehicle,"$7,000","$8,000","$8,000","$8,000","$8,000",$0,0%
+108.0,Police - 210,,,Police Equipment,"$14,600","$15,800","$15,800","$24,450","$24,450","$8,650",55%
+109.0,Police - 210,,,Services,$150,$150,$150,"$2,350","$2,350","$2,200",1467%
+110.0,Police - 210,5400.0,Supplies,,,,,,,,nan
+111.0,Police - 210,,,Supplies,"$11,650","$12,000","$11,650","$12,400","$9,000","-$2,650",-23%
+112.0,Police - 210,,,TOTAL,"$707,605","$737,565","$697,526","$718,124","$709,576","$12,050",2%
+113.0,Fire - 220,,,,,,,,,,nan
+114.0,Fire - 220,,Personnell,,,,,,,,nan
+115.0,Fire - 220,,,Fire Chief Salary,"$91,694","$94,680","$93,528","$96,334","$96,334","$2,806",3%
+116.0,Fire - 220,,,Fire Wages,"$302,993","$311,118","$311,118","$308,656","$311,118",$0,0%
+117.0,Fire - 220,,,Fire Call Wages,"$75,096","$78,700","$75,096","$77,526","$75,096",$0,0%
+118.0,Fire - 220,,,Employee Support,$0,$0,$0,$0,$0,$0,0%
+119.0,Fire - 220,,,Equipment (Protective Clothing),"$2,500","$2,500","$2,500","$2,500","$2,500",$0,0%
+120.0,Fire - 220,,Services,,,,,,,,nan
+121.0,Fire - 220,,,Vehicle Maintenance,"$21,000","$21,000","$15,000","$17,000","$17,000","$2,000",13%
+122.0,Fire - 220,,,Building Maint. (Electric),"$2,000","$2,800","$2,000","$3,000","$2,000",$0,0%
+123.0,Fire - 220,,,Ambulance Lease Space,"$21,365","$21,365","$21,365",$0,$0,"-$21,365",-100%
+124.0,Fire - 220,,,Ambulance Pro Service,"$26,880","$26,880","$26,880","$28,000","$28,000","$1,120",4%
+125.0,Fire - 220,,,,,,,,,,nan
+126.0,Fire - 220,,,Building Maint. (Building & Heat),"$16,000","$16,000","$13,500","$14,000","$12,500","-$1,000",-7%
+127.0,Fire - 220,,,"Equipment (Hose, Turn Out Gear)","$8,000","$8,000","$6,000","$6,000","$6,000",$0,0%
+128.0,Fire - 220,,,Medical Supplies,"$22,200","$22,200","$15,200","$15,200","$15,200",$0,0%
+129.0,Fire - 220,,,,,,,,,,nan
+130.0,Fire - 220,,,Fire Equip.(New/Replacement),"$8,000","$8,000","$6,000","$6,000","$6,000",$0,0%
+131.0,Fire - 220,,,TOTAL,"$597,728","$613,243","$588,187","$574,216","$571,748","-$16,439",-3%
+132.0,Land Use - 241,,,,,,,,,,nan
+133.0,Land Use - 241,5100.0,Personnel,,,,,,,,nan
+134.0,Land Use - 241,,,Staff,"$88,910","$90,688","$88,478","$114,748","$114,748","$26,270",104%
+135.0,Land Use - 241,5110.0,Employee Support,,,,,,,,nan
+136.0,Land Use - 241,,,Continuing Ed for Inspectors,$500,$500,$500,$500,$500,$0,104%
+137.0,Land Use - 241,5200.0,Services,,,,,,,,nan
+138.0,Land Use - 241,,,Montachusett Assessment,"$1,526","$1,526","$1,650","$1,650","$1,650",$0,2%
+139.0,Land Use - 241,5400.0,Supplies,,$0,,,,,,nan
+140.0,Land Use - 241,,,Land Use Supplies,"$1,500","$1,500","$1,500","$1,500",$500,"-$1,000",-67%
+141.0,Land Use - 241,,,TOTAL,"$92,436","$94,214","$92,128","$118,398","$117,398","$25,270",-39%
+142.0,Emergency Management - 291,,,,,,,,,,nan
+143.0,Emergency Management - 291,5100.0,Personnel,,,,,,,,nan
+144.0,Emergency Management - 291,,,Emergency Planning Director,"$1,156","$1,156","$1,150","$1,150","$1,150",$0,0%
+145.0,Emergency Management - 291,5110.0,Employee Support,,,,,,,,nan
+146.0,Emergency Management - 291,,,CERT Support,$500,$500,$500,$500,$500,$0,0%
+147.0,Emergency Management - 291,5400.0,Supplies,,,,,,,,nan
+148.0,Emergency Management - 291,,,Emergency Planning Expenses,$833,$833,$833,$833,$833,$0,0%
+149.0,Emergency Management - 291,,,TOTAL,"$2,489","$2,489","$2,483","$2,483","$2,483",$0,0%
+150.0,Animal Control - 292,,,,,,,,,$0,0%
+151.0,Animal Control - 292,5200.0,Services,,,,,,,$0,0%
+152.0,Animal Control - 292,,,Regional Animal Control,"$1,894","$18,944","$19,323","$19,903","$20,500",$0,0%
+153.0,Animal Control - 292,,,TOTAL,"$1,894","$18,944","$19,323","$19,903","$20,500",$0,0%
+154.0,Tree Warden - 294,,,,,,,,,,nan
+155.0,Tree Warden - 294,5100.0,Personnel,,,,,,,,nan
+156.0,Tree Warden - 294,,,Tree Warden Wages,"$1,900","$1,900","$1,900","$1,900","$1,900",$0,0%
+157.0,Tree Warden - 294,5200.0,Services,,,,,,,,nan
+158.0,Tree Warden - 294,,,Outside Tree Services,$0,$0,$0,"$5,000",$0,$0,0%
+159.0,Tree Warden - 294,,,TOTAL,"$1,900","$1,900","$1,900","$6,900","$1,900",$0,0%
+160.0,Dispatch - 299,,,,,,,,,,nan
+161.0,Dispatch - 299,5200.0,Services,,,,,,,,nan
+162.0,Dispatch - 299,,,Rutland Regional,"$125,000","$142,410","$149,000","$158,238","$158,238","$9,238",6%
+163.0,Dispatch - 299,,,TOTAL,"$125,000","$142,410","$149,000","$158,238","$158,238","$9,238",6%
+164.0,Dispatch - 299,,,,,,,,,,nan
+165.0,Dispatch - 299,,,,,"$1,610,765","$1,550,547","$1,598,261","$1,581,842","$31,295",2%
+166.0,Dispatch - 299,,,,,,,,,,nan
+167.0,Dispatch - 299,,,,,,,,,,nan
+168.0,School - 300,,,,,,,,,,nan
+169.0,School - 300,5700.0,Other,,,,,,,,nan
+170.0,School - 300,,,Quabbin Regional,"$5,820,063","$6,343,869","$6,370,641","$6,880,292","$6,880,292","$509,651",8%
+171.0,School - 300,,,QRSD Debt,"$30,225","$56,318","$56,318","$57,444","$57,444","$1,126",2%
+172.0,School - 300,,,Montachusett Technical,"$447,411","$357,138","$357,138","$396,826","$396,826","$39,688",11%
+173.0,School - 300,,,TOTAL,"$6,297,699","$6,757,325","$6,784,097","$7,334,563","$7,334,563","$550,466",8%
+174.0,School - 300,,,,,,,,,,nan
+175.0,School - 300,,,Education,,"$6,757,325","$6,784,097","$7,334,563","$7,334,563","$550,466",8%
+176.0,School - 300,,,,,,,,,,nan
+177.0,School - 300,,,,PUBLIC WORKS,,,,,,nan
+178.0,School - 300,,Personnel,,,,,,,,nan
+179.0,School - 300,,,DPW Director,"$87,519","$89,269","$89,269","$94,625","$94,402","$5,133",6%
+180.0,School - 300,,,DPW Wages,"$280,368","$285,975","$280,368","$285,975","$285,975","$5,607",2%
+181.0,School - 300,,,DPW Assistant,"$15,201","$18,166","$18,166","$18,529","$18,529",$363,2%
+182.0,School - 300,,Employee Support,,,,,,,,nan
+183.0,School - 300,,,Education,"$2,000","$1,350","$2,000","$4,000","$4,000","$2,000",100%
+184.0,School - 300,,,Clothing,"$7,000","$8,880","$7,000","$7,000","$7,000",$0,0%
+185.0,School - 300,,,Cell Phone,"$6,300","$6,300","$6,300","$6,300","$6,300",$0,0%
+186.0,School - 300,,,Longevity,"$2,000","$2,250","$2,000",$0,$0,"-$2,000",-100%
+187.0,School - 300,,Services,,,,,,,,nan
+188.0,School - 300,,,Vehicle Repairs,"$21,855","$21,855","$21,855","$21,855","$21,855",$0,0%
+189.0,School - 300,,,Building Repairs,"$17,172","$17,500","$17,172","$17,172","$17,172",$0,0%
+190.0,School - 300,,,Catch Basins,"$39,000","$43,000","$39,000","$44,000","$39,000",$0,0%
+191.0,School - 300,,,Line Painting,"$20,000","$23,000","$20,000","$22,000","$20,000",$0,0%
+192.0,School - 300,,Supplies,,,,,,,,nan
+193.0,School - 300,,,Road Materials,"$71,580","$71,580","$57,000","$71,850","$62,700","$5,700",10%
+194.0,School - 300,,,Signs,"$3,124","$3,124","$3,124","$3,124","$3,124",$0,0%
+195.0,School - 300,,,Gas,"$50,000","$44,500","$50,000","$51,000","$50,000",$0,0%
+196.0,School - 300,,,Supplies,"$34,500","$41,000","$34,500","$36,500","$34,500",$0,0%
+197.0,School - 300,,,Heating Oil,"$6,027","$6,047","$6,027","$6,027","$6,027",$0,0%
+198.0,School - 300,,Intergovernmental,,,,,,,,nan
+199.0,School - 300,,,Police Details,"$8,000","$8,000","$8,000","$8,000","$8,000",$0,0%
+200.0,School - 300,,Other,,,,,,,,nan
+201.0,School - 300,,,Advertising,"$1,000","$1,000",$0,"$1,000","$1,000",$0,0%
+202.0,School - 300,,,,,,,,,,nan
+203.0,School - 300,,,TOTAL,"$672,646","$692,797","$661,781","$698,958","$679,584","$17,803",3%
+204.0,Snow and Ice - 423,,,,,,,,,,nan
+205.0,Snow and Ice - 423,5100.0,Personnel,,,,,,,,nan
+206.0,Snow and Ice - 423,,,Winter Wages,"$68,000","$69,360","$68,000","$69,360","$68,000",$0,0%
+207.0,Snow and Ice - 423,5200.0,Services,,,,,,,,nan
+208.0,Snow and Ice - 423,,,Plowing Private Ways,"$2,100","$2,205","$2,100","$2,800",$0,"-$2,100",-100%
+209.0,Snow and Ice - 423,,,Winter Outside Services,"$5,300","$5,565","$5,300","$6,000","$5,300",$0,0%
+210.0,Snow and Ice - 423,5400.0,Supplies,,,,,,,,nan
+211.0,Snow and Ice - 423,,,"Equip., Supplies & Materials","$160,000","$160,000","$160,000","$160,000","$160,000",$0,0%
+212.0,Snow and Ice - 423,,,TOTAL,"$235,400","$237,130","$235,400","$238,160","$233,300","-$2,100",-1%
+213.0,Street Lights - 424,,,,,,,,,,nan
+214.0,Street Lights - 424,5200.0,Services,,,,,,,,nan
+215.0,Street Lights - 424,,,Municipal Lights,"$6,000","$6,000","$6,000","$6,000","$6,000",$0,0%
+216.0,Street Lights - 424,,,TOTAL,"$6,000","$6,000","$6,000","$6,000","$6,000",$0,0%
+217.0,Cemetery - 491,,,,,,,,,,nan
+218.0,Cemetery - 491,5400.0,Supplies,,,,,,,,nan
+219.0,Cemetery - 491,,,Cemetery Equiptment,"$1,300","$1,300","$1,300","$1,500","$1,300",$0,0%
+220.0,Cemetery - 491,,,TOTAL,"$1,300","$1,300","$1,300","$1,500","$1,300",$0,0%
+221.0,Cemetery - 491,,,,,,,,,,nan
+222.0,Cemetery - 491,,,PUBLIC SERVICES,,"$937,227","$904,481","$944,618","$920,184","$15,703",2%
+223.0,Cemetery - 491,,,,,,,,,,nan
+224.0,Cemetery - 491,,,,HUMAN SERVICES,,,,,,nan
+225.0,Senior Center - 541,,,,,,,,,,nan
+226.0,Senior Center - 541,5100.0,Personnel,,,,,,,,nan
+227.0,Senior Center - 541,,,COA Director,"$16,867","$17,204","$17,204","$32,990","$22,550","$5,346",31%
+228.0,Senior Center - 541,5200.0,Services,,,,,,,,nan
+229.0,Senior Center - 541,,,Coa Expenses,"$2,500","$2,500","$2,500","$3,000","$2,500",$0,0%
+230.0,Senior Center - 541,5400.0,Supplies,,,,,,,,nan
+231.0,Senior Center - 541,,,COA Expenses,"$1,900","$2,500","$1,900","$3,000","$1,900",$0,0%
+232.0,Senior Center - 541,,,TOTAL,"$21,267","$22,204","$21,604","$38,990","$26,950","$5,346",25%
+233.0,Veterans - 543,,,,,,,,,,nan
+234.0,Veterans - 543,5110.0,Employee Support,,,,,,,,nan
+235.0,Veterans - 543,,,Veteran Training Expenses,$650,$650,$650,$650,$650,$0,0%
+236.0,Veterans - 543,5200.0,Services,,,,,,,,nan
+237.0,Veterans - 543,,,Regional Services,"$6,000","$12,000","$6,000","$6,000","$6,000",$0,0%
+238.0,Veterans - 543,5400.0,Supplies,,,,,,,,nan
+239.0,Veterans - 543,,,Veterans Expenses,$200,$700,$200,$200,$200,$0,0%
+240.0,Veterans - 543,,,Veteran Flags,$500,$500,$500,$500,$500,$0,0%
+241.0,Veterans - 543,,,Veteran Graves,$500,$500,$500,$500,$500,$0,0%
+242.0,Veterans - 543,5700.0,Other,,,,,,,,nan
+243.0,Veterans - 543,,,Veteran Benefits,"$20,000","$2,000","$2,000","$2,000","$2,000",$0,0%
+244.0,Veterans - 543,,,TOTAL,"$27,850","$16,350","$9,850","$9,850","$9,850",$0,0%
+245.0,Veterans - 543,,,,,,,,,,nan
+246.0,Veterans - 543,,,HUMAN SERVICES,,"$38,554","$31,454","$48,840","$36,800","$5,346",17%
+247.0,Veterans - 543,,,,,,,,,,nan
+248.0,Veterans - 543,,,,CULTURE & RECREATION,,,,,,nan
+249.0,Library - 610,,,,,,,,,,nan
+250.0,Library - 610,5100.0,Personnel,,,,,,,,nan
+251.0,Library - 610,,,Director,"$31,644","$32,435","$32,435","$33,084","$33,084",$649,2%
+252.0,Library - 610,,,Assistant Wages,"$17,403","$17,498","$17,403","$17,919","$18,500","$1,097",6%
+253.0,Library - 610,5110.0,Employee Support,,,,,,,,nan
+254.0,Library - 610,,,Association Dues,$310,$310,$310,$310,$310,$0,0%
+255.0,Library - 610,5200.0,Services,,,,,,,,nan
+256.0,Library - 610,,,Utilities and Maintenance,"$19,510","$19,510","$19,510","$19,510","$19,510",$0,0%
+257.0,Library - 610,5400.0,Supplies,,,,,,,,nan
+258.0,Library - 610,,,Books and Materials,"$19,886","$19,886","$19,886","$19,886","$19,886",$0,0%
+259.0,Library - 610,,,TOTAL,"$88,753","$89,639","$89,544","$90,709","$91,290","$1,746",2%
+260.0,Recreation - 630,,,,,,,,,,nan
+261.0,Recreation - 630,5400.0,Supplies,,,,,,,,nan
+262.0,Recreation - 630,,,Park Services and Expenses,"$2,500","$2,500","$2,500","$2,500","$2,500",$0,0%
+263.0,Recreation - 630,,,TOTAL,"$2,500","$2,500","$2,500","$2,500","$2,500",$0,0%
+264.0,Agricultural Commission - 690,,,,,,,,,,nan
+265.0,Agricultural Commission - 690,5400.0,Supplies,,,,,,,,nan
+266.0,Agricultural Commission - 690,,,Ag Commission Expenses,$300,$300,$300,$300,$300,$0,0%
+267.0,Agricultural Commission - 690,,,TOTAL,$300,$300,$300,$300,$300,$0,0%
+268.0,Historical Commission - 691,,,,,,,,,,nan
+269.0,Historical Commission - 691,5400.0,Supplies,,,,,,,,nan
+270.0,Historical Commission - 691,,,Expenses,$200,$200,$200,$200,$200,$0,0%
+271.0,Historical Commission - 691,,,TOTAL,$200,$200,$200,$200,$200,$0,0%
+272.0,Historical Commission - 691,,,,,,,,,,nan
+273.0,Historical Commission - 691,,,,,"$92,639","$92,544","$93,709","$94,290","$1,746",2%
+274.0,Historical Commission - 691,,,,,,,,,,nan
+275.0,Historical Commission - 691,,,,DEBT,,,,,,nan
+276.0,Debt - Short-Term Interest - 750,,,,,,,,,,nan
+277.0,Debt - Short-Term Interest - 750,,,Short-Term Interest (Inside Levy),"$14,485","$14,485","$14,485","$20,000","$20,000","$5,515",38%
+278.0,Debt - Short-Term Interest - 750,,,Short-Term Interest (Outside Levy),$0,$0,$0,$0,$0,$0,0%
+279.0,Debt - Short-Term Interest - 750,,,,,,,,,,nan
+280.0,Debt - Short Term Principal 750,,,,,,,,,,nan
+281.0,Debt - Short Term Principal 750,,,Principal on Short-Term Debt,"$150,000","$50,000","$50,000","$25,000","$25,000","-$25,000",-50%
+282.0,Debt - Short Term Principal 750,,,,,,,,,,nan
+283.0,Debt - Long-Term Principal - 751,,,,,,,,,,nan
+284.0,Debt - Long-Term Principal - 751,,,Debt - Long-Term Principal,"$180,488",$0,$0,$0,$0,$0,0%
+285.0,Debt - Long-Term Principal - 751,,,,,,,,,,nan
+286.0,Debt - Long-Term Interest - 752,,,,,,,,,,nan
+287.0,Debt - Long-Term Interest - 752,,,Long-Term Interest (within Levy),"$5,400",$0,$0,$0,$0,$0,0%
+288.0,Debt - Long-Term Interest - 752,,,,,,,,,,nan
+289.0,Debt - School Roof Principal,,,,,,,,,,nan
+290.0,Debt - School Roof Interest,,,Short Term Outside Levy,"$25,000","$25,000","$25,000","$52,862","$52,862","$27,862",111%
+291.0,Debt - School Roof Interest,,,Short Term Outside Levy,"$37,625","$57,377","$57,377","$49,000","$49,000","-$8,377",-15%
+292.0,Debt - School Roof Interest,,,TOTAL,"$412,998","$146,862","$146,862","$146,862","$146,862",$0,0%
+293.0,Debt - School Roof Interest,,,,,,,,,,nan
+294.0,Debt - School Roof Interest,,,DEBT,,"$146,862","$146,862","$146,862","$146,862",$0,0%
+295.0,Debt - School Roof Interest,,,,,,,,,,nan
+296.0,Debt - School Roof Interest,,,,LIABILITIES & ASSESSMENTS,,,,,,nan
+297.0,Cherry Sheet Assessment - 820,,,,,,,,,,nan
+298.0,Cherry Sheet Assessment - 820,,,Air Pollution,"$1,285","$1,311","$1,400","$1,400","$1,400",$0,0%
+299.0,Cherry Sheet Assessment - 820,,,Regional Transit,"$6,667","$6,800","$6,800","$6,800","$6,800",$0,0%
+300.0,Cherry Sheet Assessment - 820,,,RMV,"$2,000","$2,040","$4,080","$4,080","$4,080",$0,0%
+301.0,Cherry Sheet Assessment - 820,,,TOTAL,"$9,952","$10,151","$12,280","$12,280","$12,280",$0,0%
+302.0,Worcester Regional Retirement - 911,,,,,,,,,,nan
+303.0,Worcester Regional Retirement - 911,,,Assessment,"$411,025","$431,576","$448,000","$480,823","$480,823","$32,823",7%
+304.0,Worcester Regional Retirement - 911,,,TOTAL,"$411,025","$431,576","$448,000","$480,823","$480,823","$32,823",7%
+305.0,Unemployment - 913,,,,,,,,,,nan
+306.0,Unemployment - 913,,,Reserve,$0,$0,$0,$0,$0,$0,0%
+307.0,Unemployment - 913,,,TOTAL,$0,$0,$0,$0,$0,$0,0%
+308.0,Health insurance - 914,,,,,,,,,,nan
+309.0,Health insurance - 914,,,Annual Cost,"$213,360","$219,761","$219,761","$241,737","$241,737","$21,976",10%
+310.0,Health insurance - 914,,,TOTAL,"$213,360","$219,761","$219,761","$241,737","$241,737","$21,976",10%
+311.0,Medicare - 916,,,,,,,,,,nan
+312.0,Medicare - 916,,,Annual Cost,"$32,706","$33,360","$33,360","$33,360","$33,360",$0,0%
+313.0,Medicare - 916,,,TOTAL,"$32,706","$33,360","$33,360","$33,360","$33,360",$0,0%
+314.0,Liability Insurance - 945,,,,,,,,,,nan
+315.0,Liability Insurance - 945,,,Annual Cost,"$143,280","$156,175","$156,175","$163,984","$163,984","$7,809",5%
+316.0,Liability Insurance - 945,,,TOTAL,"$143,280","$156,175","$156,175","$163,984","$163,984","$7,809",5%
+317.0,Offsets and Overlay - 999,,,,,,,,,,nan
+318.0,Offsets and Overlay - 999,,,Library Off-Set,"$8,627","$8,627","$12,765","$12,765","$12,765",$0,0%
+319.0,Offsets and Overlay - 999,,,Overlay,"$60,000","$60,000","$66,144","$60,000","$60,000",$0,0%
+320.0,Offsets and Overlay - 999,,,TOTAL,"$68,627","$68,627","$78,909","$72,765","$72,765",,nan
+321.0,Offsets and Overlay - 999,,,,,,,,,,nan
+322.0,Offsets and Overlay - 999,,,UNCLASSIFIED,,"$919,650","$948,485","$1,004,949","$1,004,949",,nan
+323.0,Offsets and Overlay - 999,,,,,,,,,,nan
+324.0,Offsets and Overlay - 999,,,,,,,,,,nan
+325.0,Offsets and Overlay - 999,,,GRAND TOTAL,"$10,844,514","$11,221,128","$11,146,879","$11,914,599","$11,848,376","$701,497",6.29%
