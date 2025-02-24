@@ -1,27 +1,233 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revenue - Hubbardston Budget</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Hubbardston FY26 Budget | Revenue</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Core Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(20, 77, 35, 0.98);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 90%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 0px 0px 12px 12px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffd700;
+        }
+
+        /* Hero Sections in One Row, Stacking on Mobile */
+        .hero-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 2rem 5%;
+            flex-wrap: wrap;
+        }
+
+        .hero {
+            flex: 1;
+            text-align: center;
+            padding: 2rem 1rem;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            min-width: 280px;
+        }
+
+        .hero h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .hero.property { background: rgba(20, 77, 35, 0.85); }
+        .hero.state-aid { background: rgba(30, 90, 50, 0.85); }
+        .hero.local-receipts { background: rgba(50, 130, 80, 0.85); }
+
+        /* Charts Section - Mobile Responsive */
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 2rem 5%;
+            flex-direction: column;
+        }
+
+        .chart-box {
+            width: 90%;
+            max-width: 500px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #144d23;
+            color: white;
+            margin-top: 50px;
+            border-radius: 20px 20px 0px 0px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="revenue.html">Revenue</a></li>
-            <li><a href="expenditures.html">Expenditures</a></li>
-            <li><a href="capital.html">Capital Plan</a></li>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="revenue.html">💰 Revenue</a></li>
+            <li><a href="expenditures.html">📉 Expenditures</a></li>
+            <li><a href="capital.html">🏗 Capital Plan</a></li>
         </ul>
     </nav>
 
-    <section class="section">
-        <h2>Revenue Overview</h2>
-        <canvas id="revenueChart"></canvas>
-    </section>
+    <!-- Hero Sections in One Row -->
+    <div class="hero-container">
+        <div class="hero property" onclick="toggleDropdown('propertyDropdown')">
+            <h1>📊 Property Taxes</h1>
+            <p>80% of revenue - Click to Learn More</p>
+            <div id="propertyDropdown" class="dropdown-content">
+                Property taxes fund essential town services, including public safety, education, and roads.
+                The FY26 property tax levy is **$9.28M**, reflecting **new growth** and the **2.5% levy limit increase**.
+            </div>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+        <div class="hero state-aid" onclick="toggleDropdown('stateAidDropdown')">
+            <h1>🏛️ State Aid</h1>
+            <p>6% of revenue - Click to Learn More</p>
+            <div id="stateAidDropdown" class="dropdown-content">
+                State aid provides funding for schools, public works, and town operations. FY26 estimates **$730K**,
+                reflecting a **3% increase** over last year.
+            </div>
+        </div>
+
+        <div class="hero local-receipts" onclick="toggleDropdown('localReceiptsDropdown')">
+            <h1>💰 Local Receipts</h1>
+            <p>14% of revenue - Click to Learn More</p>
+            <div id="localReceiptsDropdown" class="dropdown-content">
+                Local receipts come from excise taxes, permit fees, and PILOT agreements. FY26 projections **$1.65M**,
+                a **2% increase** due to steady economic activity.
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>📊 Revenue Analysis</h2>
+        <div class="chart-container">
+            <div class="chart-box">
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <canvas id="revenueTrendsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown(id) {
+            var content = document.getElementById(id);
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            new Chart(document.getElementById("revenueChart").getContext("2d"), {
+                type: "pie",
+                data: {
+                    labels: ["Property Taxes", "State Aid", "Local Receipts"],
+                    datasets: [{ data: [9276259, 730906, 1619684], backgroundColor: ["#2a7d2e", "#1e5b24", "#34d399"] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            new Chart(document.getElementById("revenueTrendsChart").getContext("2d"), {
+                type: "bar",
+                data: {
+                    labels: ["FY24", "FY25", "FY26"],
+                    datasets: [
+                        { label: "Property Taxes", data: [8400000, 8792541, 9276259], backgroundColor: "#2a7d2e" },
+                        { label: "State Aid", data: [700000, 709835, 730906], backgroundColor: "#1e5b24" },
+                        { label: "Local Receipts", data: [1550000, 1619684, 1649500], backgroundColor: "#34d399" }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        });
+    </script>
+
 </body>
 </html>
