@@ -26,12 +26,20 @@
             color: #10b981;
         }
         canvas {
-            max-width: 100%;
+            max-width: 50%;
+            height: 200px !important;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            overflow: hidden;
+        }
+        thead {
+            position: sticky;
+            top: 0;
+            background: #10b981;
+            color: white;
         }
         th, td {
             border: 1px solid #ddd;
@@ -56,9 +64,9 @@
         <h1>Town Budget Proposal Dashboard</h1>
         
         <div class="filter-container">
-            <label for="department">Filter by Department:</label>
-            <select id="department" onchange="updateTable()">
-                <option value="all">All Departments</option>
+            <label for="category">Filter by Category:</label>
+            <select id="category" onchange="updateTable()">
+                <option value="all">All Categories</option>
             </select>
         </div>
         
@@ -67,7 +75,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Department</th>
                     <th>Category</th>
                     <th>Subcategory</th>
                     <th>FY24 Actual</th>
@@ -89,7 +96,6 @@
             budgetData = rows.map(row => {
                 const cols = row.split(',');
                 return {
-                    department: cols[0],
                     category: cols[1],
                     subcategory: cols[2],
                     fy24: parseFloat(cols[3]) || 0,
@@ -97,31 +103,30 @@
                     fy26: parseFloat(cols[5]) || 0
                 };
             });
-            populateDepartmentFilter();
+            populateCategoryFilter();
             updateTable();
             renderChart();
         }
 
-        function populateDepartmentFilter() {
-            const departmentSelect = document.getElementById('department');
-            const departments = [...new Set(budgetData.map(d => d.department))];
-            departments.forEach(dept => {
+        function populateCategoryFilter() {
+            const categorySelect = document.getElementById('category');
+            const categories = [...new Set(budgetData.map(d => d.category))];
+            categories.forEach(cat => {
                 const option = document.createElement('option');
-                option.value = dept;
-                option.textContent = dept;
-                departmentSelect.appendChild(option);
+                option.value = cat;
+                option.textContent = cat;
+                categorySelect.appendChild(option);
             });
         }
 
         function updateTable() {
-            const departmentFilter = document.getElementById('department').value;
+            const categoryFilter = document.getElementById('category').value;
             const tableBody = document.getElementById('budgetTableBody');
             tableBody.innerHTML = '';
             
-            budgetData.filter(d => departmentFilter === 'all' || d.department === departmentFilter)
+            budgetData.filter(d => categoryFilter === 'all' || d.category === categoryFilter)
                       .forEach(d => {
                 const row = `<tr>
-                    <td>${d.department}</td>
                     <td>${d.category}</td>
                     <td>${d.subcategory}</td>
                     <td>$${d.fy24.toLocaleString()}</td>
@@ -134,20 +139,20 @@
 
         function renderChart() {
             const ctx = document.getElementById('budgetChart').getContext('2d');
-            const departmentTotals = {};
+            const categoryTotals = {};
             budgetData.forEach(d => {
-                if (!departmentTotals[d.department]) {
-                    departmentTotals[d.department] = 0;
+                if (!categoryTotals[d.category]) {
+                    categoryTotals[d.category] = 0;
                 }
-                departmentTotals[d.department] += d.fy26;
+                categoryTotals[d.category] += d.fy26;
             });
             
             new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: Object.keys(departmentTotals),
+                    labels: Object.keys(categoryTotals),
                     datasets: [{
-                        data: Object.values(departmentTotals),
+                        data: Object.values(categoryTotals),
                         backgroundColor: ['#10b981', '#34d399', '#059669', '#22c55e', '#16a34a']
                     }]
                 }
