@@ -3,163 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Town Budget Proposal Dashboard</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <title>Budget Overview</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #10b981;
-        }
-        canvas {
-            max-width: 50%;
-            height: 200px !important;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            overflow: hidden;
-        }
-        thead {
-            position: sticky;
-            top: 0;
-            background: #10b981;
-            color: white;
+            background: white;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 8px;
             text-align: left;
         }
         th {
-            background-color: #10b981;
+            background-color: #28A745;
             color: white;
         }
-        .filter-container {
-            margin-bottom: 20px;
-        }
-        select {
-            padding: 8px;
-            font-size: 16px;
+        select, input {
+            margin-bottom: 10px;
+            padding: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Town Budget Proposal Dashboard</h1>
-        
-        <div class="filter-container">
-            <label for="category">Filter by Category:</label>
-            <select id="category" onchange="updateTable()">
-                <option value="all">All Categories</option>
-            </select>
-        </div>
-        
-        <canvas id="budgetChart"></canvas>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Subcategory</th>
-                    <th>FY24 Actual</th>
-                    <th>FY25 Actual</th>
-                    <th>FY26 Proposed</th>
-                </tr>
-            </thead>
-            <tbody id="budgetTableBody"></tbody>
-        </table>
-    </div>
-
+    <h1>Town Budget Overview</h1>
+    <label for="departmentFilter">Filter by Department:</label>
+    <select id="departmentFilter" onchange="filterTable()">
+        <option value="">All</option>
+    </select>
+    <label for="subcategoryFilter">Filter by Subcategory:</label>
+    <input type="text" id="subcategoryFilter" onkeyup="filterTable()" placeholder="Type to filter...">
+    <table id="budgetTable">
+        <thead>
+            <tr>
+                <th>Department</th>
+                <th>Request</th>
+                <th>FY24 Actual</th>
+                <th>FY25 Requested</th>
+                <th>FY25 Actual</th>
+                <th>FY26 Dept</th>
+                <th>FY26 Proposed</th>
+                <th>Dollar Change</th>
+                <th>Percent Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data Rows Will Be Populated Dynamically -->
+        </tbody>
+    </table>
     <script>
-        let budgetData = [];
-
-        async function loadData() {
-            const response = await fetch('budget-data.csv');
-            const data = await response.text();
-            const rows = data.split('\n').slice(1);
-            budgetData = rows.map(row => {
-                const cols = row.split(',');
-                return {
-                    category: cols[1],
-                    subcategory: cols[2],
-                    fy24: parseFloat(cols[3]) || 0,
-                    fy25: parseFloat(cols[4]) || 0,
-                    fy26: parseFloat(cols[5]) || 0
-                };
-            });
-            populateCategoryFilter();
-            updateTable();
-            renderChart();
-        }
-
-        function populateCategoryFilter() {
-            const categorySelect = document.getElementById('category');
-            const categories = [...new Set(budgetData.map(d => d.category))];
-            categories.forEach(cat => {
-                const option = document.createElement('option');
-                option.value = cat;
-                option.textContent = cat;
-                categorySelect.appendChild(option);
-            });
-        }
-
-        function updateTable() {
-            const categoryFilter = document.getElementById('category').value;
-            const tableBody = document.getElementById('budgetTableBody');
-            tableBody.innerHTML = '';
+        document.addEventListener("DOMContentLoaded", function() {
+            const data = [
+                // Data rows will be dynamically inserted here from the uploaded file
+            ];
+            const tableBody = document.querySelector("#budgetTable tbody");
+            const departmentFilter = document.querySelector("#departmentFilter");
+            const departments = new Set();
             
-            budgetData.filter(d => categoryFilter === 'all' || d.category === categoryFilter)
-                      .forEach(d => {
-                const row = `<tr>
-                    <td>${d.category}</td>
-                    <td>${d.subcategory}</td>
-                    <td>$${d.fy24.toLocaleString()}</td>
-                    <td>$${d.fy25.toLocaleString()}</td>
-                    <td>$${d.fy26.toLocaleString()}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
-            });
-        }
-
-        function renderChart() {
-            const ctx = document.getElementById('budgetChart').getContext('2d');
-            const categoryTotals = {};
-            budgetData.forEach(d => {
-                if (!categoryTotals[d.category]) {
-                    categoryTotals[d.category] = 0;
-                }
-                categoryTotals[d.category] += d.fy26;
-            });
+            function populateTable(filteredData = data) {
+                tableBody.innerHTML = "";
+                filteredData.forEach(row => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${row.Department}</td>
+                        <td>${row.Request}</td>
+                        <td>${row.FY24_ACTUAL}</td>
+                        <td>${row.FY25_REQUESTED}</td>
+                        <td>${row.FY25_ACTUAL}</td>
+                        <td>${row.FY26_DEPT}</td>
+                        <td>${row.FY26_PROPOSED}</td>
+                        <td>${row.Dollar_Change}</td>
+                        <td>${row.Percent_Change}%</td>
+                    `;
+                    tableBody.appendChild(tr);
+                    departments.add(row.Department);
+                });
+                departmentFilter.innerHTML = `<option value="">All</option>` +
+                    Array.from(departments).map(dep => `<option value="${dep}">${dep}</option>`).join('');
+            }
             
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(categoryTotals),
-                    datasets: [{
-                        data: Object.values(categoryTotals),
-                        backgroundColor: ['#10b981', '#34d399', '#059669', '#22c55e', '#16a34a']
-                    }]
-                }
-            });
-        }
-
-        window.onload = loadData;
+            function filterTable() {
+                const deptValue = departmentFilter.value.toLowerCase();
+                const subcatValue = document.querySelector("#subcategoryFilter").value.toLowerCase();
+                
+                const filteredData = data.filter(row => 
+                    (deptValue === "" || row.Department.toLowerCase() === deptValue) &&
+                    (subcatValue === "" || row.Request.toLowerCase().includes(subcatValue))
+                );
+                populateTable(filteredData);
+            }
+            
+            populateTable(); // Initially populate the table with all data
+        });
     </script>
 </body>
 </html>
