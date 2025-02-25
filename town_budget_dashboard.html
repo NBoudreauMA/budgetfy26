@@ -88,7 +88,7 @@
                     Array.from(departments).map(dep => `<option value="${dep}">${dep}</option>`).join('');
             }
             
-            function filterTable() {
+            window.filterTable = function() {
                 const deptValue = departmentFilter.value.toLowerCase();
                 const subcatValue = document.querySelector("#subcategoryFilter").value.toLowerCase();
                 
