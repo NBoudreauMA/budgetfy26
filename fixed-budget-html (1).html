@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Town Budget Proposal - Fiscal Year 2026
+  </title>
+  <style>
+   /* Base styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f7f0;
+      color: #333;
+    }
+    
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .nav-button {
+      background: none;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #333;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .nav-button:hover {
+      color: #047857;
+    }
+    
+    .nav-button.active {
+      border-bottom: 3px solid #10b981;
+      color: #047857;
+      font-weight: 600;
+    }
+    
+    /* Content container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Section styling */
+    .section {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .section-title {
+      color: #047857;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Department card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .card {
+      background-color: #f0faf0;
+      border: 1px solid #d1fae5;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .card-title {
+      color: #047857;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-percentage {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    
+    .card-amount {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    
+    .card-change {
+      font-size: 0.875rem;
+    }
+    
+    .increase {
+      color: #059669;
+    }
+    
+    /* Table styles */
+    .table-container {
+      overflow-x: auto;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid #e2efe2;
+    }
+    
+    th {
+      background-color: #e6f6e6;
+      font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f0faf0;
+    }
+    
+    .budget-positive {
+      color: #059669;
+      font-weight: 600;
+    }
+    
+    .budget-negative {
+      color: #dc2626;
+      font-weight: 600;
+    }
+    
+    /* Department accordions */
+    .accordion {
+      border: 1px solid #d1fae5;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    
+    .accordion-header {
+      background-color: #f0faf0;
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .accordion-header:hover {
+      background-color: #d1fae5;
+    }
+    
+    .accordion-title {
+      font-weight: 600;
+    }
+    
+    .accordion-content {
+      padding: 1rem;
+      display: none;
+    }
+    
+    /* Summary section */
+    .summary-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    
+    .summary-total {
+      margin-bottom: 0.5rem;
+    }
+    
+    .summary-percentage {
+      text-align: right;
+    }
+    
+    .percentage-label {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    
+    .percentage-value {
+      color: #047857;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    /* Charts */
+    .chart-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    @media (min-width: 768px) {
+      .chart-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    /* Hide by default */
+    .content-section {
+      display: none;
+    }
+    
+    /* Show active section */
+    .content-section.active {
+      display: block;
+    }
+  </style>
+ </head>
+ <body>
+  <div class="header">
+   <h1>
+    Town Budget Proposal
+   </h1>
+   <p>
+    Fiscal Year 2026
+   </p>
+  </div>
+  <div class="navbar">
+   <div class="nav-container">
+    <button class="nav-button active" onclick="showSection('overview')">
+     Budget Overview
+    </button>
+    <button class="nav-button" onclick="showSection('general-gov')">
+     General Government
+    </button>
+    <button class="nav-button" onclick="showSection('public-safety')">
+     Public Safety
+    </button>
+    <button class="nav-button" onclick="showSection('education')">
+     Education
+    </button>
+    <button class="nav-button" onclick="showSection('public-works')">
+     Public Works
+    </button>
+    <button class="nav-button" onclick="showSection('human-services')">
+     Human Services
+    </button>
+    <button class="nav-button" onclick="showSection('culture')">
+     Culture &amp; Recreation
+    </button>
+    <button class="nav-button" onclick="showSection('debt')">
+     Debt Service
+    </button>
+    <button class="nav-button" onclick="showSection('liabilities')">
+     Liabilities
+    </button>
+   </div>
+  </div>
+  <div class="container">
+   <!-- Budget Overview Section -->
+   <div class="content-section active" id="overview">
+    <div class="section">
+     <h2 class="section-title">
+      Executive Summary
+     </h2>
+     <p>
+      The Fiscal Year 2026 Budget Proposal totals
+      <strong>
+       $11,837,762
+      </strong>
+      , representing a
+      <strong class="increase">
+       6.2% increase
+      </strong>
+      ($690,883) over the FY25 actual budget. This budget reflects our commitment to maintaining essential services while addressing mandated cost increases and investing strategically in areas critical to our community's future.
+     </p>
+    </div>
+    <div class="section">
+     <h2 class="section-title">
+      Budget Highlights by Department
+     </h2>
+     <div class="card-grid">
+      <div class="card">
+       <h3 class="card-title">
+        Education
+       </h3>
+       <p class="card-percentage">
+        62% of Total Budget
+       </p>
+       <p class="card-amount">
+        $7,334,563
+       </p>
+       <p class="card-change">
+        <span class="increase">
+         ↑ 8%
+        </span>
+        from FY25
+       </p>
+      </div>
+      <div class="card">
+       <h3 class="card-title">
+        Public Safety
+       </h3>
+       <p class="card-percentage">
+        13% of Total Budget
+       </p>
+       <p class="card-amount">
+        $1,581,722
+       </p>
+       <p class="card-change">
+        <span class="increase">
+         ↑ 2%
+        </span>
+        from FY25
+       </p>
+      </div>
+      <div class="card">
+       <h3 class="card-title">
+        Public Works
+       </h3>
+       <p class="card-percentage">
+        8% of Total Budget
+       </p>
+       <p class="card-amount">
+        $920,184
+       </p>
+       <p class="card-change">
+        <span class="increase">
+         ↑ 2%
+        </span>
+        from FY25
+       </p>
+      </div>
+      <div class="card">
+       <h3 class="card-title">
+        Liabilities &amp; Assessments
+       </h3>
+       <p class="card-percentage">
+        8% of Total Budget
+       </p>
+       <p class="card-amount">
+        $999,455
+       </p>
+       <p class="card-change">
+        <span class="increase">
+         ↑ 5%
+        </span>
+        from FY25
+       </p>
+      </div>
+      <div class="card">
+       <h3 class="card-title">
+        General Government
+       </h3>
+       <p class="card-percentage">
+        6% of Total Budget
+       </p>
+       <p class="card-amount">
+        $724,886
+       </p>
+       <p class="card-change">
+        <span class="increase">
+         ↑ 5%
+        </span>
+        from FY25
+       </p>
+      </div>
+      <div class="card">
+       <h3 class="card-title">
+        Debt Service
+       </h3>
+       <p class="card-percentage">
+        1% of Total Budget
+       </p>
+       <p class="card-amount">
+        $146,862
+       </p>
+       <p class="card-change">
+        0% change from FY25
+       </p>
+      </div>
+      <div class="card">
+       <h3 class="card-title">
+        Culture &amp; Recreation
+       </h3>
+       <p class="card-percentage">
+        &lt; 1% of Total Budget
+       </p>
+       <p class="card-amount">
+        $94,290
+       </p>
+       <p class="card-change">
+        <span class="increase">
+         ↑ 2%
+        </span>
+        from FY25
+       </p>
+      </div>
+      <div class="card">
+       <h3 class="card-title">
+        Human Services
+       </h3>
+       <p class="card-percentage">
+        &lt; 1% of Total Budget
+       </p>
+       <p class="card-amount">
+        $35,800
+       </p>
+       <p class="card-change">
+        <span class="increase">
+         ↑ 14%
+        </span>
+        from FY25
+       </p>
+      </div>
+     </div>
+    </div>
+    <div class="section">
+     <h2 class="section-title">
+      Budget Summary
+     </h2>
+     <div class="table-container">
+      <table>
+       <thead>
+        <tr>
+         <th>
+          Department
+         </th>
+         <th>
+          FY25 ACTUAL
+         </th>
+         <th>
+          FY26 PROPOSED
+         </th>
+         <th>
+          CHANGE ($)
+         </th>
+         <th>
+          CHANGE (%)
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td>
+          General Government
+         </td>
+         <td>
+          $688,408
+         </td>
+         <td>
+          $724,886
+         </td>
+         <td>
+          $36,478
+         </td>
+         <td class="budget-positive">
+          5%
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Public Safety
+         </td>
+         <td>
+          $1,550,547
+         </td>
+         <td>
+          $1,581,722
+         </td>
+         <td>
+          $31,175
+         </td>
+         <td class="budget-positive">
+          2%
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Education
+         </td>
+         <td>
+          $6,784,097
+         </td>
+         <td>
+          $7,334,563
+         </td>
+         <td>
+          $550,466
+         </td>
+         <td class="budget-positive">
+          8%
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Public Works
+         </td>
+         <td>
+          $904,481
+         </td>
+         <td>
+          $920,184
+         </td>
+         <td>
+          $15,703
+         </td>
+         <td class="budget-positive">
+          2%
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Human Services
+         </td>
+         <td>
+          $31,454
+         </td>
+         <td>
+          $35,800
+         </td>
+         <td>
+          $4,346
+         </td>
+         <td class="budget-positive">
+          14%
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Culture &amp; Recreation
+         </td>
+         <td>
+          $92,544
+         </td>
+         <td>
+          $94,290
+         </td>
+         <td>
+          $1,746
+         </td>
+         <td class="budget-positive">
+          2%
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Debt Service
+         </td>
+         <td>
+          $146,862
+         </td>
+         <td>
+          $146,862
+         </td>
+         <td>
+          $0
+         </td>
+         <td>
+          0%
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Liabilities &amp; Assessments
+         </td>
+         <td>
+          $948,485
+         </td>
+         <td>
+          $999,455
+         </td>
+         <td>
+          $50,970
+         </td>
+         <td class="budget-positive">
+          5%
+         </td>
+        </tr>
+        <tr style="background-color: #e6f6e6; font-weight: bold;">
+         <td>
+          GRAND TOTAL
+         </td>
+         <td>
+          $11,146,879
+         </td>
+         <td>
+          $11,837,762
+         </td>
+         <td>
+          $690,883
+         </td>
+         <td class="budget-positive">
+          6.2%
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   
+   <!-- General Government Section -->
+   <div class="content-section" id="general-gov">
+    <div class="section">
+     <div class="summary-header">
+      <div class="summary-total">
+       <h2 class="section-title">
+        General Government
+       </h2>
+       <p>
+        FY26 Proposed:
+        <strong>
+         $724,886
+        </strong>
+       </p>
+       <p>
+        Change from FY25:
+        <strong class="increase">
+         +$36,478 (5%)
+        </strong>
+       </p>
+      </div>
+      <div class="summary-percentage">
+       <p class="percentage-label">
+        Percentage of Total Budget
+       </p>
+       <p class="percentage-value">
+        6%
+       </p>
+      </div>
+     </div>
+     <h3>
+      Justifications for Major Changes
+     </h3>
+     <ol>
+      <li>
+       <strong>
+        Select Board Executive Assistant:
+       </strong>
+       The 11% increase ($3,221) addresses adjusted responsibilities and ensures competitive compensation.
+      </li>
+      <li>
+       <strong>
+        Select Board Postage:
+       </strong>
+       The 300% increase ($3,000) accounts for increased mailing needs and rising postal rates.
+      </li>
+      <li>
+       <strong>
+        Town Administrator Salary:
+       </strong>
+       The 3% increase ($3,366) represents a standard cost-of-living adjustment for this key position.
+      </li>
+     </ol>
+     
+     <h3>Breakdown by Sub-Department</h3>
+     <!-- Moderator - 114 -->
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">Moderator - 114</div>
+       <div class="increase">$100 (0%)</div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Category</th>
+           <th>Description</th>
+           <th>FY24 ACTUAL</th>
+           <th>FY25 REQUESTED</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 DEPT</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>5100</td>
+           <td>Fire Chief Salary</td>
+           <td>$91,694</td>
+           <td>$94,680</td>
+           <td>$93,528</td>
+           <td>$96,334</td>
+           <td>$96,334</td>
+           <td>$2,806</td>
+           <td>3%</td>
+          </tr>
+          <tr>
+           <td>5200</td>
+           <td>Vehicle Maintenance</td>
+           <td>$21,000</td>
+           <td>$21,000</td>
+           <td>$15,000</td>
+           <td>$17,000</td>
+           <td>$17,000</td>
+           <td>$2,000</td>
+           <td>13%</td>
+          </tr>
+          <tr style="background-color: #e6f6e6; font-weight: bold;">
+           <td>TOTAL</td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td>$588,021</td>
+           <td></td>
+           <td>$571,628</td>
+           <td>-$16,393</td>
+           <td class="budget-negative">-3%</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   
+   <!-- Education Section -->
+   <div class="content-section" id="education">
+    <div class="section">
+     <div class="summary-header">
+      <div class="summary-total">
+       <h2 class="section-title">
+        Education
+       </h2>
+       <p>
+        FY26 Proposed:
+        <strong>
+         $7,334,563
+        </strong>
+       </p>
+       <p>
+        Change from FY25:
+        <strong class="increase">
+         +$550,466 (8%)
+        </strong>
+       </p>
+      </div>
+      <div class="summary-percentage">
+       <p class="percentage-label">
+        Percentage of Total Budget
+       </p>
+       <p class="percentage-value">
+        62%
+       </p>
+      </div>
+     </div>
+     <h3>
+      Justifications for Major Changes
+     </h3>
+     <p>
+      The 8% increase in educational funding addresses several critical needs:
+     </p>
+     <ol>
+      <li>
+       Contractual salary increases for teachers and staff
+      </li>
+      <li>
+       Rising special education costs
+      </li>
+      <li>
+       Technology infrastructure improvements
+      </li>
+      <li>
+       Curriculum materials updates
+      </li>
+     </ol>
+     
+     <h3>Breakdown by Sub-Department</h3>
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">
+        Quabbin Regional - 300
+       </div>
+       <div class="increase">
+        $6,880,292 (8% increase)
+       </div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Category</th>
+           <th>Description</th>
+           <th>FY24 ACTUAL</th>
+           <th>FY25 REQUESTED</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 DEPT</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>5700</td>
+           <td>Quabbin Regional</td>
+           <td>$5,820,063</td>
+           <td>$6,343,869</td>
+           <td>$6,370,641</td>
+           <td>$6,880,292</td>
+           <td>$6,880,292</td>
+           <td>$509,651</td>
+           <td>8%</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+     
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">
+        Montachusett Technical - 301
+       </div>
+       <div class="increase">
+        $396,826 (11% increase)
+       </div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Category</th>
+           <th>Description</th>
+           <th>FY24 ACTUAL</th>
+           <th>FY25 REQUESTED</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 DEPT</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>5700</td>
+           <td>Montachusett Technical</td>
+           <td>$447,411</td>
+           <td>$357,138</td>
+           <td>$357,138</td>
+           <td>$396,826</td>
+           <td>$396,826</td>
+           <td>$39,688</td>
+           <td>11%</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   
+   <!-- Public Works Section -->
+   <div class="content-section" id="public-works">
+    <div class="section">
+     <div class="summary-header">
+      <div class="summary-total">
+       <h2 class="section-title">
+        Public Works
+       </h2>
+       <p>
+        FY26 Proposed:
+        <strong>
+         $920,184
+        </strong>
+       </p>
+       <p>
+        Change from FY25:
+        <strong class="increase">
+         +$15,703 (2%)
+        </strong>
+       </p>
+      </div>
+      <div class="summary-percentage">
+       <p class="percentage-label">
+        Percentage of Total Budget
+       </p>
+       <p class="percentage-value">
+        8%
+       </p>
+      </div>
+     </div>
+     <h3>
+      Justifications for Major Changes
+     </h3>
+     <p>
+      The modest 2% increase in Public Works funding prioritizes:
+     </p>
+     <ol>
+      <li>
+       Critical infrastructure maintenance
+      </li>
+      <li>
+       Standard cost-of-living adjustments for staff
+      </li>
+      <li>
+       Increasing costs for materials and supplies
+      </li>
+     </ol>
+     
+     <h3>Breakdown by Sub-Department</h3>
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">
+        Highway Maintenance - 422
+       </div>
+       <div class="increase">
+        $560,000 (2% increase)
+       </div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Description</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>Highway Maintenance</td>
+           <td>$550,000</td>
+           <td>$560,000</td>
+           <td>$10,000</td>
+           <td class="budget-positive">2%</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+     
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">
+        Snow &amp; Ice - 423
+       </div>
+       <div class="increase">
+        $125,000 (4% increase)
+       </div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Description</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>Snow &amp; Ice</td>
+           <td>$120,000</td>
+           <td>$125,000</td>
+           <td>$5,000</td>
+           <td class="budget-positive">4%</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+     
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">
+        Vehicle Maintenance - 424
+       </div>
+       <div class="increase">
+        $78,000 (4% increase)
+       </div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Description</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>Vehicle Maintenance</td>
+           <td>$75,000</td>
+           <td>$78,000</td>
+           <td>$3,000</td>
+           <td class="budget-positive">4%</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   
+   <!-- Human Services Section -->
+   <div class="content-section" id="human-services">
+    <div class="section">
+     <div class="summary-header">
+      <div class="summary-total">
+       <h2 class="section-title">
+        Human Services
+       </h2>
+       <p>
+        FY26 Proposed:
+        <strong>
+         $35,800
+        </strong>
+       </p>
+       <p>
+        Change from FY25:
+        <strong class="increase">
+         +$4,346 (14%)
+        </strong>
+       </p>
+      </div>
+      <div class="summary-percentage">
+       <p class="percentage-label">
+        Percentage of Total Budget
+       </p>
+       <p class="percentage-value">
+        &lt; 1%
+       </p>
+      </div>
+     </div>
+     <h3>
+      Justifications for Major Changes
+     </h3>
+     <p>
+      The 14% increase reflects enhanced community support services, particularly for seniors and veterans.
+     </p>
+    </div>
+   </div>
+   
+   <!-- Culture & Recreation Section -->
+   <div class="content-section" id="culture">
+    <div class="section">
+     <div class="summary-header">
+      <div class="summary-total">
+       <h2 class="section-title">
+        Culture &amp; Recreation
+       </h2>
+       <p>
+        FY26 Proposed:
+        <strong>
+         $94,290
+        </strong>
+       </p>
+       <p>
+        Change from FY25:
+        <strong class="increase">
+         +$1,746 (2%)
+        </strong>
+       </p>
+      </div>
+      <div class="summary-percentage">
+       <p class="percentage-label">
+        Percentage of Total Budget
+       </p>
+       <p class="percentage-value">
+        &lt; 1%
+       </p>
+      </div>
+     </div>
+     <h3>
+      Justifications for Major Changes
+     </h3>
+     <p>
+      <strong>
+       Library - 610:
+      </strong>
+      The FY26 Library budget shows a modest 2% increase ($1,746) from FY25, primarily focused on personnel adjustments:
+     </p>
+     <ol>
+      <li>
+       Library Director: 2% salary increase ($649) represents a standard cost-of-living adjustment for this professional position.
+      </li>
+      <li>
+       Library Assistant Wages: 6% increase ($1,097) addresses both cost-of-living adjustment and an incremental increase in hours to support expanded programming and services.
+      </li>
+      <li>
+       Other Expenses: All other library expenses including utilities, maintenance, association dues, and materials acquisitions remain level-funded, demonstrating fiscal restraint while maintaining essential services.
+      </li>
+     </ol>
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">
+        Library - 610
+       </div>
+       <div class="increase">
+        $91,290 (2% increase)
+       </div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>
+            Description
+           </th>
+           <th>
+            FY25 ACTUAL
+           </th>
+           <th>
+            FY26 PROPOSED
+           </th>
+           <th>
+            CHANGE ($)
+           </th>
+           <th>
+            CHANGE (%)
+           </th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>
+            Director
+           </td>
+           <td>
+            $32,435
+           </td>
+           <td>
+            $33,084
+           </td>
+           <td>
+            $649
+           </td>
+           <td class="budget-positive">
+            2%
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Assistant Wages
+           </td>
+           <td>
+            $17,403
+           </td>
+           <td>
+            $18,500
+           </td>
+           <td>
+            $1,097
+           </td>
+           <td class="budget-positive">
+            6%
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Association Dues
+           </td>
+           <td>
+            $310
+           </td>
+           <td>
+            $310
+           </td>
+           <td>
+            $0
+           </td>
+           <td>
+            0%
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Utilities and Maintenance
+           </td>
+           <td>
+            $19,510
+           </td>
+           <td>
+            $19,510
+           </td>
+           <td>
+            $0
+           </td>
+           <td>
+            0%
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Books and Materials
+           </td>
+           <td>
+            $19,886
+           </td>
+           <td>
+            $19,886
+           </td>
+           <td>
+            $0
+           </td>
+           <td>
+            0%
+           </td>
+          </tr>
+          <tr style="background-color: #e6f6e6; font-weight: bold;">
+           <td>
+            TOTAL
+           </td>
+           <td>
+            $89,544
+           </td>
+           <td>
+            $91,290
+           </td>
+           <td>
+            $1,746
+           </td>
+           <td class="budget-positive">
+            2%
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   
+   <!-- Debt Service Section -->
+   <div class="content-section" id="debt">
+    <div class="section">
+     <div class="summary-header">
+      <div class="summary-total">
+       <h2 class="section-title">
+        Debt Service
+       </h2>
+       <p>
+        FY26 Proposed:
+        <strong>
+         $146,862
+        </strong>
+       </p>
+       <p>
+        Change from FY25:
+        <strong>
+         $0 (0%)
+        </strong>
+       </p>
+      </div>
+      <div class="summary-percentage">
+       <p class="percentage-label">
+        Percentage of Total Budget
+       </p>
+       <p class="percentage-value">
+        1%
+       </p>
+      </div>
+     </div>
+     <h3>
+      Justifications for Major Changes
+     </h3>
+     <p>
+      The overall Debt Service budget for FY26 remains level-funded at $146,862 compared to FY25, though there are significant shifts within the debt structure:
+     </p>
+     <ol>
+      <li>
+       <strong>
+        Short-Term Interest (Inside Levy):
+       </strong>
+       The 38% increase ($5,515) reflects current market interest rates, which have risen compared to previous fiscal years.
+      </li>
+      <li>
+       <strong>
+        Principal on Short-Term Debt:
+       </strong>
+       The 50% decrease (-$25,000) represents the continued pay-down of short-term borrowing obligations within the levy limit, demonstrating prudent debt management.
+      </li>
+      <li>
+       <strong>
+        School Roof Project:
+       </strong>
+       Principal payments increased by 111% ($27,862) due to the debt schedule established for this capital project, while interest payments decreased by 15% (-$8,377) as the principal is paid down. This debt is "outside the levy" as it was previously approved through a debt exclusion vote.
+      </li>
+     </ol>
+    </div>
+   </div>
+   
+   <!-- Liabilities Section -->
+   <div class="content-section" id="liabilities">
+    <div class="section">
+     <div class="summary-header">
+      <div class="summary-total">
+       <h2 class="section-title">
+        Liabilities &amp; Assessments
+       </h2>
+       <p>
+        FY26 Proposed:
+        <strong>
+         $999,455
+        </strong>
+       </p>
+       <p>
+        Change from FY25:
+        <strong class="increase">
+         +$50,970 (5%)
+        </strong>
+       </p>
+      </div>
+      <div class="summary-percentage">
+       <p class="percentage-label">
+        Percentage of Total Budget
+       </p>
+       <p class="percentage-value">
+        8%
+       </p>
+      </div>
+     </div>
+     <h3>
+      Justifications for Major Changes
+     </h3>
+     <p>
+      The 5% increase in Liabilities &amp; Assessments reflects several mandatory obligations:
+     </p>
+     <ol>
+      <li>
+       <strong>
+        Health Insurance:
+       </strong>
+       The 7% increase ($32,340) is driven by anticipated premium increases for employee health benefits.
+      </li>
+      <li>
+       <strong>
+        Retirement Assessment:
+       </strong>
+       The 4% increase ($18,630) reflects our mandatory contribution to the Worcester Regional Retirement System.
+      </li>
+     </ol>
+    </div>
+   </div>
+  </div>
+  
+  <script>
+   document.addEventListener("DOMContentLoaded", function() {
+    // Show the default active section on load
+    showSection('overview');
+  });
+
+  function showSection(sectionId) {
+    // Hide all sections
+    var sections = document.querySelectorAll('.content-section');
+    sections.forEach(function(section) {
+      section.classList.remove('active');
+    });
+
+    // Show the selected section
+    document.getElementById(sectionId).classList.add('active');
+
+    // Update active button state
+    var buttons = document.querySelectorAll('.nav-button');
+    buttons.forEach(function(button) {
+      button.classList.remove('active');
+    });
+
+    // Find and activate the selected button
+    var activeButton = document.querySelector(`button[onclick="showSection('${sectionId}')"]`);
+    if (activeButton) {
+      activeButton.classList.add('active');
+    }
+  }
+
+  function toggleAccordion(element) {
+    var content = element.nextElementSibling;
+
+    // Toggle visibility
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  }
+  </script>
+ </body>
+</html>
+         <tbody>
+          <tr><td>5100</td><td>Stipend</td><td>$100</td><td>$100</td><td>$100</td><td>$100</td><td>$100</td><td>$0</td><td>0%</td></tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+
+     <!-- Select Board - 122 -->
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">Select Board - 122</div>
+       <div class="increase">$80,694 (6% increase)</div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Category</th>
+           <th>Description</th>
+           <th>FY24 ACTUAL</th>
+           <th>FY25 REQUESTED</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 DEPT</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr><td>5100</td><td>Executive Assistant</td><td>$28,111</td><td>$28,673</td><td>$28,673</td><td>$36,870</td><td>$31,894</td><td>$3,221</td><td>11%</td></tr>
+          <tr><td>5200</td><td>Legal</td><td>$40,000</td><td>$40,000</td><td>$40,000</td><td>$40,000</td><td>$40,000</td><td>$0</td><td>0%</td></tr>
+          <tr><td>5400</td><td>Postage</td><td>$1,000</td><td>$1,000</td><td>$1,000</td><td>$1,000</td><td>$4,000</td><td>$3,000</td><td>300%</td></tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+
+     <!-- Town Administrator - 129 -->
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">Town Administrator - 129</div>
+       <div class="increase">$122,766 (3% increase)</div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Category</th>
+           <th>Description</th>
+           <th>FY24 ACTUAL</th>
+           <th>FY25 REQUESTED</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 DEPT</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr><td>5100</td><td>Salary</td><td>$110,000</td><td>$112,200</td><td>$112,200</td><td>$112,200</td><td>$115,566</td><td>$3,366</td><td>3%</td></tr>
+          <tr><td>5110</td><td>Cell Phone Stipend</td><td>$600</td><td>$600</td><td>$600</td><td>$600</td><td>$600</td><td>$0</td><td>0%</td></tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+
+     <!-- Accountant - 135 -->
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">Accountant - 135</div>
+       <div class="increase">$44,749 (2% increase)</div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Category</th>
+           <th>Description</th>
+           <th>FY24 ACTUAL</th>
+           <th>FY25 REQUESTED</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 DEPT</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr><td>5200</td><td>Accountant Services</td><td>$23,500</td><td>$23,970</td><td>$23,970</td><td>$24,929</td><td>$24,449</td><td>$479</td><td>2%</td></tr>
+          <tr><td>5200</td><td>Annual Audit</td><td>$19,500</td><td>$19,500</td><td>$19,500</td><td>$19,500</td><td>$19,500</td><td>$0</td><td>0%</td></tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   
+   <!-- Public Safety Section -->
+   <div class="content-section" id="public-safety">
+    <div class="section">
+     <div class="summary-header">
+      <div class="summary-total">
+       <h2 class="section-title">
+        Public Safety
+       </h2>
+       <p>
+        FY26 Proposed:
+        <strong>
+         $1,581,722
+        </strong>
+       </p>
+       <p>
+        Change from FY25:
+        <strong class="increase">
+         +$31,175 (2%)
+        </strong>
+       </p>
+      </div>
+      <div class="summary-percentage">
+       <p class="percentage-label">
+        Percentage of Total Budget
+       </p>
+       <p class="percentage-value">
+        13%
+       </p>
+      </div>
+     </div>
+     <h3>
+      Justifications for Major Changes
+     </h3>
+     <ol>
+      <li>
+       <strong>
+        Police Department:
+       </strong>
+       The 2% increase reflects moderate adjustments in personnel costs and strategic equipment investments.
+      </li>
+      <li>
+       <strong>
+        Fire Department:
+       </strong>
+       The 3% decrease represents careful budget management while maintaining essential services.
+      </li>
+      <li>
+       <strong>
+        Dispatch:
+       </strong>
+       The 6% increase is a contractual increase for Rutland Regional Dispatch services.
+      </li>
+     </ol>
+     
+     <h3>Breakdown by Sub-Department</h3>
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">
+        Police - 210
+       </div>
+       <div class="increase">
+        $709,576 (2% increase)
+       </div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>
+            Description
+           </th>
+           <th>
+            FY25 ACTUAL
+           </th>
+           <th>
+            FY26 PROPOSED
+           </th>
+           <th>
+            CHANGE ($)
+           </th>
+           <th>
+            CHANGE (%)
+           </th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>
+            Police Chief Salary
+           </td>
+           <td>
+            $98,430
+           </td>
+           <td>
+            $101,383
+           </td>
+           <td>
+            $2,953
+           </td>
+           <td class="budget-positive">
+            3%
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Police Wages
+           </td>
+           <td>
+            $505,000
+           </td>
+           <td>
+            $510,050
+           </td>
+           <td>
+            $5,050
+           </td>
+           <td class="budget-positive">
+            1%
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Police Equipment
+           </td>
+           <td>
+            $19,100
+           </td>
+           <td>
+            $33,550
+           </td>
+           <td>
+            $14,450
+           </td>
+           <td class="budget-positive">
+            76%
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Other Expenses
+           </td>
+           <td>
+            $74,996
+           </td>
+           <td>
+            $64,593
+           </td>
+           <td>
+            -$10,403
+           </td>
+           <td class="budget-negative">
+            -14%
+           </td>
+          </tr>
+          <tr style="background-color: #e6f6e6; font-weight: bold;">
+           <td>
+            TOTAL
+           </td>
+           <td>
+            $697,526
+           </td>
+           <td>
+            $709,576
+           </td>
+           <td>
+            $12,050
+           </td>
+           <td class="budget-positive">
+            2%
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+     
+     <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+       <div class="accordion-title">
+        Fire - 220
+       </div>
+       <div class="increase">
+        $571,628 (3% decrease)
+       </div>
+      </div>
+      <div class="accordion-content">
+       <div class="table-container">
+        <table>
+         <thead>
+          <tr>
+           <th>Category</th>
+           <th>Description</th>
+           <th>FY24 ACTUAL</th>
+           <th>FY25 REQUESTED</th>
+           <th>FY25 ACTUAL</th>
+           <th>FY26 DEPT</th>
+           <th>FY26 PROPOSED</th>
+           <th>CHANGE ($)</th>
+           <th>CHANGE (%)</th>
+          </tr>
+         </thead>
