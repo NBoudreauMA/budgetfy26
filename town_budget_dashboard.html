@@ -15,15 +15,19 @@
             width: 100%;
             border-collapse: collapse;
             background: white;
+            position: relative;
+        }
+        thead th {
+            position: sticky;
+            top: 0;
+            background-color: #28A745;
+            color: white;
+            z-index: 2;
         }
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
-        }
-        th {
-            background-color: #28A745;
-            color: white;
         }
         select, input {
             margin-bottom: 10px;
@@ -60,21 +64,34 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             fetch('budget-data.csv')
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('CSV file not found or inaccessible.');
+                    }
+                    return response.text();
+                })
                 .then(csvData => {
-                    const rows = csvData.split('\n').map(row => row.split(','));
+                    if (!csvData) {
+                        console.error('CSV file is empty.');
+                        return;
+                    }
+                    const rows = csvData.trim().split('\n').map(row => row.split(','));
+                    if (rows.length < 2) {
+                        console.error('CSV file does not contain enough data.');
+                        return;
+                    }
                     const headers = rows.shift(); // Extract column headers
                     const data = rows.map(row => {
                         return {
-                            Department: row[0],
-                            Request: row[1],
-                            FY24_ACTUAL: row[2],
-                            FY25_REQUESTED: row[3],
-                            FY25_ACTUAL: row[4],
-                            FY26_DEPT: row[5],
-                            FY26_PROPOSED: row[6],
-                            Dollar_Change: row[7],
-                            Percent_Change: row[8]
+                            Department: row[0] || '',
+                            Request: (row[1] || '').replace(/Total/gi, '').trim(), // Remove totals
+                            FY24_ACTUAL: row[2] || '',
+                            FY25_REQUESTED: row[3] || '',
+                            FY25_ACTUAL: row[4] || '',
+                            FY26_DEPT: row[5] || '',
+                            FY26_PROPOSED: row[6] || '',
+                            Dollar_Change: row[7] || '',
+                            Percent_Change: row[8] || ''
                         };
                     });
                     
@@ -98,7 +115,7 @@
                                 <td>${row.Percent_Change}%</td>
                             `;
                             tableBody.appendChild(tr);
-                            departments.add(row.Department);
+                            if (row.Department) departments.add(row.Department);
                         });
                         departmentFilter.innerHTML = `<option value="">All</option>` +
                             Array.from(departments).map(dep => `<option value="${dep}">${dep}</option>`).join('');
@@ -117,7 +134,7 @@
                     
                     populateTable(); // Initially populate the table with all data
                 })
-                .catch(error => console.error('Error loading CSV file:', error));
+                .catch(error => console.error('Error loading CSV file:', error.message));
         });
     </script>
 </body>
