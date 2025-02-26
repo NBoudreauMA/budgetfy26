@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Town Budget Proposal - Fiscal Year 2026</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <style>
+    .department-card {
+      transition: all 0.3s ease;
+    }
+    .department-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .table-container {
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+    }
+    thead {
+      background-color: #f8fafc;
+    }
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    .budget-change-positive {
+      color: #047857;
+      font-weight: 600;
+    }
+    .budget-change-negative {
+      color: #dc2626;
+      font-weight: 600;
+    }
+    .hidden {
+      display: none;
+    }
+    .tab-active {
+      border-bottom: 3px solid #3b82f6;
+      color: #3b82f6;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <header class="bg-blue-800 text-white">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold mb-2">Town Budget Proposal</h1>
+      <p class="text-xl">Fiscal Year 2026</p>
+    </div>
+  </header>
+
+  <nav class="bg-white shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex overflow-x-auto py-4 space-x-8">
+        <button class="tab-btn tab-active px-2 py-1 font-medium whitespace-nowrap" data-tab="overview">Budget Overview</button>
+        <button class="tab-btn px-2 py-1 font-medium whitespace-nowrap" data-tab="general-gov">General Government</button>
+        <button class="tab-btn px-2 py-1 font-medium whitespace-nowrap" data-tab="public-safety">Public Safety</button>
+        <button class="tab-btn px-2 py-1 font-medium whitespace-nowrap" data-tab="education">Education</button>
+        <button class="tab-btn px-2 py-1 font-medium whitespace-nowrap" data-tab="public-works">Public Works</button>
+        <button class="tab-btn px-2 py-1 font-medium whitespace-nowrap" data-tab="human-services">Human Services</button>
+        <button class="tab-btn px-2 py-1 font-medium whitespace-nowrap" data-tab="culture">Culture & Recreation</button>
+        <button class="tab-btn px-2 py-1 font-medium whitespace-nowrap" data-tab="debt">Debt Service</button>
+        <button class="tab-btn px-2 py-1 font-medium whitespace-nowrap" data-tab="liabilities">Liabilities & Assessments</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-4 py-8">
+    <!-- Overview Section -->
+    <section id="overview" class="tab-content">
+      <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <h2 class="text-2xl font-bold mb-4">Executive Summary</h2>
+        <p class="mb-4">The Fiscal Year 2026 Budget Proposal totals <span class="font-bold">$11,837,762</span>, representing a <span class="font-bold text-blue-600">6.2% increase</span> ($690,883) over the FY25 actual budget. This budget reflects our commitment to maintaining essential services while addressing mandated cost increases and investing strategically in areas critical to our community's future.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div>
+            <canvas id="budgetPieChart" height="300"></canvas>
+          </div>
+          <div>
+            <canvas id="budgetChangeChart" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <h2 class="text-2xl font-bold mb-4">Budget Highlights by Department</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="department-card bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <h3 class="font-bold text-lg text-blue-800">Education</h3>
+            <p class="text-sm text-gray-600">62% of Total Budget</p>
+            <p class="text-lg font-semibold mt-2">$7,334,563</p>
+            <p class="text-sm mt-1"><span class="text-green-600">↑ 8%</span> from FY25</p>
+          </div>
+          
+          <div class="department-card bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+            <h3 class="font-bold text-lg text-indigo-800">Public Safety</h3>
+            <p class="text-sm text-gray-600">13% of Total Budget</p>
+            <p class="text-lg font-semibold mt-2">$1,581,722</p>
+            <p class="text-sm mt-1"><span class="text-green-600">↑ 2%</span> from FY25</p>
+          </div>
+          
+          <div class="department-card bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <h3 class="font-bold text-lg text-purple-800">Public Works</h3>
+            <p class="text-sm text-gray-600">8% of Total Budget</p>
+            <p class="text-lg font-semibold mt-2">$920,184</p>
+            <p class="text-sm mt-1"><span class="text-green-600">↑ 2%</span> from FY25</p>
+          </div>
+          
+          <div class="department-card bg-pink-50 border border-pink-200 rounded-lg p-4">
+            <h3 class="font-bold text-lg text-pink-800">Liabilities & Assessments</h3>
+            <p class="text-sm text-gray-600">8% of Total Budget</p>
+            <p class="text-lg font-semibold mt-2">$999,455</p>
+            <p class="text-sm mt-1"><span class="text-green-600">↑ 5%</span> from FY25</p>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="department-card bg-green-50 border border-green-200 rounded-lg p-4">
+            <h3 class="font-bold text-lg text-green-800">General Government</h3>
+            <p class="text-sm text-gray-600">6% of Total Budget</p>
+            <p class="text-lg font-semibold mt-2">$724,886</p>
+            <p class="text-sm mt-1"><span class="text-green-600">↑ 5%</span> from FY25</p>
+          </div>
+          
+          <div class="department-card bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <h3 class="font-bold text-lg text-yellow-800">Debt Service</h3>
+            <p class="text-sm text-gray-600">1% of Total Budget</p>
+            <p class="text-lg font-semibold mt-2">$146,862</p>
+            <p class="text-sm mt-1"><span class="text-gray-600">↑ 0%</span> from FY25</p>
+          </div>
+          
+          <div class="department-card bg-red-50 border border-red-200 rounded-lg p-4">
+            <h3 class="font-bold text-lg text-red-800">Culture & Recreation</h3>
+            <p class="text-sm text-gray-600">< 1% of Total Budget</p>
+            <p class="text-lg font-semibold mt-2">$94,290</p>
+            <p class="text-sm mt-1"><span class="text-green-600">↑ 2%</span> from FY25</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <h2 class="text-2xl font-bold mb-4">Budget Summary</h2>
+        <div class="table-container">
+          <table class="min-w-full">
+            <thead>
+              <tr class="bg-gray-100">
+                <th>Department</th>
+                <th>FY24 ACTUAL</th>
+                <th>FY25 ACTUAL</th>
+                <th>FY26 PROPOSED</th>
+                <th>CHANGE ($)</th>
+                <th>CHANGE (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>General Government</td>
+                <td>$669,598</td>
+                <td>$688,408</td>
+                <td>$724,886</td>
+                <td>$36,478</td>
+                <td class="budget-change-positive">5%</td>
+              </tr>
+              <tr>
+                <td>Public Safety</td>
+                <td>$1,529,052</td>
+                <td>$1,550,547</td>
+                <td>$1,581,722</td>
+                <td>$31,175</td>
+                <td class="budget-change-positive">2%</td>
+              </tr>
+              <tr>
+                <td>Education</td>
+                <td>$6,297,699</td>
+                <td>$6,784,097</td>
+                <td>$7,334,563</td>
+                <td>$550,466</td>
+                <td class="budget-change-positive">8%</td>
+              </tr>
+              <tr>
+                <td>Public Works</td>
+                <td>$915,346</td>
+                <td>$904,481</td>
+                <td>$920,184</td>
+                <td>$15,703</td>
+                <td class="budget-change-positive">2%</td>
+              </tr>
+              <tr>
+                <td>Human Services</td>
+                <td>$49,117</td>
+                <td>$31,454</td>
+                <td>$35,800</td>
+                <td>$4,346</td>
+                <td class="budget-change-positive">14%</td>
+              </tr>
+              <tr>
+                <td>Culture & Recreation</td>
+                <td>$91,753</td>
+                <td>$92,544</td>
+                <td>$94,290</td>
+                <td>$1,746</td>
+                <td class="budget-change-positive">2%</td>
+              </tr>
+              <tr>
+                <td>Debt Service</td>
+                <td>$412,998</td>
+                <td>$146,862</td>
+                <td>$146,862</td>
+                <td>$0</td>
+                <td>0%</td>
+              </tr>
+              <tr>
+                <td>Liabilities & Assessments</td>
+                <td>$878,950</td>
+                <td>$948,485</td>
+                <td>$999,455</td>
+                <td>$50,970</td>
+                <td class="budget-change-positive">5%</td>
+              </tr>
+              <tr class="bg-blue-50 font-bold">
+                <td>GRAND TOTAL</td>
+                <td>$10,844,514</td>
+                <td>$11,146,879</td>
+                <td>$11,837,762</td>
+                <td>$690,883</td>
+                <td class="budget-change-positive">6.2%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-2xl font-bold mb-4">Fiscal Responsibility Measures</h2>
+        <p class="mb-4">The proposed budget incorporates several cost-saving measures to minimize the overall increase:</p>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li>Level-funding of many operational line items across departments</li>
+          <li>Reduction of $25,000 in Short-Term Principal debt payments</li>
+          <li>Elimination of certain expenses including Plowing Private Ways (-$2,100) and Longevity program (-$2,000)</li>
+          <li>Strategic reductions in supplies and operational expenses in multiple departments</li>
+          <li>Prioritizing only the most essential personnel adjustments and infrastructure investments</li>
+        </ol>
+        <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+          <h3 class="font-bold text-lg mb-2">Conclusion</h3>
+          <p>The FY26 Budget Proposal reflects a careful balance between fiscal responsibility and necessary investments in our community's future. The 6.2% increase is primarily driven by education costs and non-discretionary assessments, with municipal operations seeing only modest adjustments.</p>
+          <p class="mt-2">We believe this budget positions the town to maintain service levels while addressing critical infrastructure and personnel needs. We respectfully request the Board's approval of this fiscally responsible proposal.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- General Government Section -->
+    <section id="general-gov" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <h2 class="text-2xl font-bold mb-2 text-green-800">General Government</h2>
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <p class="text-lg">FY26 Proposed: <span class="font-bold">$724,886</span></p>
+            <p>Change from FY25: <span class="font-bold text-green-600">+$36,478 (5%)</span></p>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-600">Percentage of Total Budget</p>
+            <p class="text-2xl font-bold text-green-800">6%</p>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h3 class="text-xl font-bold mb-4">Justifications for Major Changes</h3>
+          <ol class="list-decimal pl-6 space-y-2">
+            <li><strong>Select Board (122):</strong> 6% increase primarily due to Executive Assistant salary adjustment (+11%) and reallocation of expenses with increases in postage needs (+300%) offset by reductions in advertising (-67%) and office supplies (-40%).</li>
+            <li><strong>Town Administrator (129):</strong> 3% increase reflects standard cost-of-living adjustment for Town Administrator position.</li>
+            <li><strong>Assessor (141):</strong> 3% increase addresses rising costs for professional assessing services essential to maintaining accurate property valuations.</li>
+            <li><strong>Treasurer Collector (149):</strong> Adjustments include necessary salary increases for key personnel balanced by reductions in operational expenses.</li>
+            <li><strong>Information Technology (155):</strong> 8% increase primarily directed toward enhanced IT maintenance, reflecting growing cybersecurity needs and system upgrades.</li>
+            <li><strong>Building & Maintenance (192):</strong> 30% increase addresses long-deferred building maintenance needs and expanded custodial hours, representing an investment in infrastructure preservation.</li>
+          </ol>
+        </div>
+        
+        <div class="departments-accordion">
+          <!-- Moderator -->
+          <div class="department-item mb-4 border border-gray-200 rounded-lg overflow-hidden">
+            <div class="department-header bg-gray-50 px-4 py-3 cursor-pointer flex justify-between items-center">
+              <h4 class="font-bold">Moderator - 114</h4>
+              <span class="text-gray-500">$100 (0% change)</span>
+            </div>
+            <div class="department-content hidden px-4 py-3">
+              <div class="table-container">
+                <table class="min-w-full">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>FY25 ACTUAL</th>
+                      <th>FY26 PROPOSED</th>
+                      <th>CHANGE ($)</th>
+                      <th>CHANGE (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>5100</td>
+                      <td>Stipend</td>
+                      <td>$100</td>
+                      <td>$100</td>
+                      <td>$0</td>
+                      <td>0%</td>
+                    </tr>
+                    <tr class="font-bold">
+                      <td colspan="2">TOTAL</td>
+                      <td>$100</td>
+                      <td>$100</td>
+                      <td>$0</td>
+                      <td>0%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Select Board -->
+          <div class="department-item mb-4 border border-gray-200 rounded-lg overflow-hidden">
+            <div class="department-header bg-gray-50 px-4 py-3 cursor-pointer flex justify-between items-center">
+              <h4 class="font-bold">Select Board - 122</h4>
+              <span class="text-green-600">$80,694 (6% increase)</span>
+            </div>
+            <div class="department-content hidden px-4 py-3">
+              <div class="table-container">
+                <table class="min-w-full">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>FY25 ACTUAL</th>
+                      <th>FY26 PROPOSED</th>
+                      <th>CHANGE ($)</th>
+                      <th>CHANGE (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>5100</td>
+                      <td>Executive Assistant</td>
+                      <td>$28,673</td>
+                      <td>$31,894</td>
+                      <td>$3,221</td>
+                      <td class="budget-change-positive">11%</td>
+                    </tr>
+                    <tr>
+                      <td>5110</td>
+                      <td>Expenses</td>
+                      <td>$800</td>
+                      <td>$800</td>
+                      <td>$0</td>
+                      <td>0%</td>
+                    </tr>
+                    <tr>
+                      <td>5200</td>
+                      <td>Advertising</td>
+                      <td>$1,500</td>
+                      <td>$500</td>
+                      <td>-$1,000</td>
+                      <td class="budget-change-negative">-67%</td>
+                    </tr>
+                    <tr>
+                      <td>5200</td>
+                      <td>Legal</td>
+                      <td>$40,000</td>
+                      <td>$40,000</td>
+                      <td>$0</td>
+                      <td>0%</td>
+                    </tr>
+                    <tr>
+                      <td>5400</td>
+                      <td>Postage</td>
+                      <td>$1,000</td>
+                      <td>$4,000</td>
+                      <td>$3,000</td>
+                      <td class="budget-change-positive">300%</td>
+                    </tr>
+                    <tr>
+                      <td>5400</td>
+                      <td>Office Supplies</td>
+                      <td>$2,500</td>
+                      <td>$1,500</td>
+                      <td>-$1,000</td>
+                      <td class="budget-change-negative">-40%</td>
+                    </tr>
+                    <tr>
+                      <td>5400</td>
+                      <td>Town Report</td>
+                      <td>$500</td>
+                      <td>$500</td>
+                      <td>$0</td>
+                      <td>0%</td>
+                    </tr>
+                    <tr>
+                      <td>5400</td>
+                      <td>Memorial Day</td>
+                      <td>$1,500</td>
+                      <td>$1,500</td>
+                      <td>$0</td>
+                      <td>0%</td>
+                    </tr>
+                    <tr class="font-bold">
+                      <td colspan="2">TOTAL</td>
+                      <td>$76,473</td>
+                      <td>$80,694</td>
+                      <td>$4,221</td>
+                      <td class="budget-change-positive">6%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Additional departments would go here -->
+          <!-- Town Admin -->
+          <div class="department-item mb-4 border border-gray-200 rounded-lg overflow-hidden">
+            <div class="department-header bg-gray-50 px-4 py-3 cursor-pointer flex justify-between items-center">
+              <h4 class="font-bold">Town Admin - 129</h4>
+              <span class="text-green-600">$122,766 (3% increase)</span>
+            </div>
+            <div class="department-content hidden px-4 py-3">
+              <div class="table-container">
+                <table class="min-w-full">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th>FY25 ACTUAL</th>
+                      <th>FY26 PROPOSED</th>
+                      <th>CHANGE ($)</th>
+                      <th>CHANGE (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Salary</td>
+                      <td>$112,200</td>
+                      <td>$115,566</td>
+                      <td>$3,366</td>
+                      <td class="budget-change-positive">3%</td>
+                    </tr>
+                    <tr>
+                      <td>Cell Phone Stipend</td>
+                      <td>$600</td>
+                      <td>$600</td>
+                      <td>$0</td>
+                      <td>0%</td>
+                    </tr>
+                    <tr>
+                      <td>Expenses</td>
+                      <td>$6,600</td>
+                      <td>$6,600</td>
+                      <td>$0</td>
+                      <td>0%</td>
+                    </tr>
+                    <tr class="font-bold">
+                      <td>TOTAL</td>
+                      <td>$119,400</td>
+                      <td>$122,766</td>
+                      <td>$3,366</td>
+                      <td class="budget-change-positive">3%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- View All General Government Departments button -->
+          <button id="view-all-general-gov" class="mt-4 w-full bg-green-100 hover:bg-green-200 text-green-800 font-bold py-2 px-4 rounded">
+            View All General Government Departments
+          </button>
+          
+          <div id="all-general-gov-content" class="hidden mt-4 space-y-4">
+            <!-- Finance Committee -->
+            <div class="department-item mb-4 border border-gray-200 rounded-lg overflow-hidden">
+              <div class="department-header bg-gray-50 px-4 py-3 cursor-pointer flex justify-between items-center">
+                <h4 class="font-bold">Finance Committee - 131</h4>
+                <span>$30,200 (0% change)</span>
+              </div>
+              <div class="department-content hidden px-4 py-3">
+                <!-- Finance Committee table content -->
+              </div>
+            </div>
+            
+            <!-- Accountant -->
+            <div class="department-item mb-4 border border-gray-200 rounded-lg overflow-hidden">
+              <div class="department-header bg-gray-50 px-4 py-3 cursor-pointer flex justify-between items-center">
+                <h4 class="font-bold">Accountant - 135</h4>
+                <span class="text-green-600">$44,749 (2% increase)</span>
+              </div>
+              <div class="department-content hidden px-4 py-3">
+                <!-- Accountant table content -->
+              </div>
+            </div>
+            
+            <!-- Additional departments would be listed here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Public Safety Section -->
+    <section id="public-safety" class="tab-content hidden">
+      <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <h2 class="text-2xl font-bold mb-2 text-indigo-800">Public Safety</h2>
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <p class="text-lg">FY26 Proposed: <span class="font-bold">$1,581,722</span></p>
+            <p>Change from FY25: <span class="font-bold text-green-600">+$31,175 (2%)</span></p>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-600">Percentage of Total Budget</p>
+            <p class="text-2xl font-bold text-indigo-800">13%</p>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h3 class="text-xl font-bold mb-4">Justifications for Major Changes</h3>
+          <ol class="list-decimal pl-6 space-y-2">
+            <li><strong>Police Department (210):</strong> The 2% increase ($12,050) reflects moderate adjustments in personnel costs and strategic equipment investments. Key changes include:
+              <ul class="list-disc pl-6 mt-2">
+                <li>Standard 3% salary increase for Police Chief</li>
+                <li>Significant investment in Police Equipment (+176% and +55%) to replace aging gear and ensure officer safety</li>
+                <li>Reduction in Police Education (-31%) and Stipends & Allowances (-42%) to offset equipment investments</li>
+                <li>Increase in Services (+1467%) to support new community policing initiatives</li>
+              </ul>
+            </li>
+            <li><strong>Fire Department (220):</strong> The 3% decrease (-$16,559) represents careful budget management while maintaining essential services. Key changes include: 
+              <ul class="list-disc pl-6 mt-2">
+                <li>Standard 3% salary increase for Fire Chief</li>
+                <li>Elimination of Ambulance Lease Space (-$21,365) due to relocation of ambulance services</li>
+                <li>Increased Vehicle Maintenance (+13%) to address aging apparatus maintenance needs</li>
+              </ul>
+            </li>
+            <li><strong>Land Use (241):</strong> The 27% increase ($25,270) is primarily driven by staff reorganization and expanded code enforcement activities, offset slightly by reduced supply needs.</li>
+            <li><strong>Animal Control (292):</strong> The 6% increase ($1,177) reflects contractual obligations with the regional animal control program.</li>
+            <li><strong>Dispatch (299):</strong> The 6% increase ($9,238) is a contractual increase for Rutland Regional Dispatch services, which provides essential 911 and emergency communications support.</li>
+          </ol>
+        </div>
+        
+        <!-- Department Accordion -->
+        <div class="departments-accordion">
+          <!-- Police Department -->
+          <div class="department-item mb-4 border border-gray-200 rounded-lg overflow-hidden">
+            <div class="department-header bg-gray-50 px-4 py-3 cursor-pointer flex justify-between items-center">
+              <h4 class="font-bold">Police - 210</h4>
+              <span class="text-green-600">$709,576 (2% increase)</span>
+            </div>
+            <div class="department-content hidden px-4 py-3">
+              <div class="table-container">
+                <table class="min-w-full">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>FY25 ACTUAL</th>
+                      <th>FY26 PROPOSED</th>
+                      <th>CHANGE ($)</th>
+                      <th>CHANGE
