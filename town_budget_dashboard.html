@@ -59,47 +59,65 @@
     </table>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const data = [
-                // Data rows will be dynamically inserted here from the uploaded file
-            ];
-            const tableBody = document.querySelector("#budgetTable tbody");
-            const departmentFilter = document.querySelector("#departmentFilter");
-            const departments = new Set();
-            
-            function populateTable(filteredData = data) {
-                tableBody.innerHTML = "";
-                filteredData.forEach(row => {
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-                        <td>${row.Department}</td>
-                        <td>${row.Request}</td>
-                        <td>${row.FY24_ACTUAL}</td>
-                        <td>${row.FY25_REQUESTED}</td>
-                        <td>${row.FY25_ACTUAL}</td>
-                        <td>${row.FY26_DEPT}</td>
-                        <td>${row.FY26_PROPOSED}</td>
-                        <td>${row.Dollar_Change}</td>
-                        <td>${row.Percent_Change}%</td>
-                    `;
-                    tableBody.appendChild(tr);
-                    departments.add(row.Department);
-                });
-                departmentFilter.innerHTML = `<option value="">All</option>` +
-                    Array.from(departments).map(dep => `<option value="${dep}">${dep}</option>`).join('');
-            }
-            
-            window.filterTable = function() {
-                const deptValue = departmentFilter.value.toLowerCase();
-                const subcatValue = document.querySelector("#subcategoryFilter").value.toLowerCase();
-                
-                const filteredData = data.filter(row => 
-                    (deptValue === "" || row.Department.toLowerCase() === deptValue) &&
-                    (subcatValue === "" || row.Request.toLowerCase().includes(subcatValue))
-                );
-                populateTable(filteredData);
-            }
-            
-            populateTable(); // Initially populate the table with all data
+            fetch('budget-data.csv')
+                .then(response => response.text())
+                .then(csvData => {
+                    const rows = csvData.split('\n').map(row => row.split(','));
+                    const headers = rows.shift(); // Extract column headers
+                    const data = rows.map(row => {
+                        return {
+                            Department: row[0],
+                            Request: row[1],
+                            FY24_ACTUAL: row[2],
+                            FY25_REQUESTED: row[3],
+                            FY25_ACTUAL: row[4],
+                            FY26_DEPT: row[5],
+                            FY26_PROPOSED: row[6],
+                            Dollar_Change: row[7],
+                            Percent_Change: row[8]
+                        };
+                    });
+                    
+                    const tableBody = document.querySelector("#budgetTable tbody");
+                    const departmentFilter = document.querySelector("#departmentFilter");
+                    const departments = new Set();
+                    
+                    function populateTable(filteredData = data) {
+                        tableBody.innerHTML = "";
+                        filteredData.forEach(row => {
+                            const tr = document.createElement("tr");
+                            tr.innerHTML = `
+                                <td>${row.Department}</td>
+                                <td>${row.Request}</td>
+                                <td>${row.FY24_ACTUAL}</td>
+                                <td>${row.FY25_REQUESTED}</td>
+                                <td>${row.FY25_ACTUAL}</td>
+                                <td>${row.FY26_DEPT}</td>
+                                <td>${row.FY26_PROPOSED}</td>
+                                <td>${row.Dollar_Change}</td>
+                                <td>${row.Percent_Change}%</td>
+                            `;
+                            tableBody.appendChild(tr);
+                            departments.add(row.Department);
+                        });
+                        departmentFilter.innerHTML = `<option value="">All</option>` +
+                            Array.from(departments).map(dep => `<option value="${dep}">${dep}</option>`).join('');
+                    }
+                    
+                    window.filterTable = function() {
+                        const deptValue = departmentFilter.value.toLowerCase();
+                        const subcatValue = document.querySelector("#subcategoryFilter").value.toLowerCase();
+                        
+                        const filteredData = data.filter(row => 
+                            (deptValue === "" || row.Department.toLowerCase() === deptValue) &&
+                            (subcatValue === "" || row.Request.toLowerCase().includes(subcatValue))
+                        );
+                        populateTable(filteredData);
+                    }
+                    
+                    populateTable(); // Initially populate the table with all data
+                })
+                .catch(error => console.error('Error loading CSV file:', error));
         });
     </script>
 </body>
