@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,10 +34,27 @@
             margin-bottom: 10px;
             padding: 5px;
         }
+        .summary {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 600px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Town Budget Overview</h1>
+    <div class="summary">
+        <h3>Summary</h3>
+        <p><strong>Total FY25 Requested:</strong> <span id="totalRequested">Loading...</span></p>
+        <p><strong>Total FY26 Proposed:</strong> <span id="totalProposed">Loading...</span></p>
+        <p><strong>Average Percent Change:</strong> <span id="avgChange">Loading...</span></p>
+    </div>
+    <canvas id="budgetChart"></canvas>
     <label for="departmentFilter">Filter by Department:</label>
     <select id="departmentFilter" onchange="filterTable()">
         <option value="">All</option>
@@ -80,59 +98,62 @@
                         console.error('CSV file does not contain enough data.');
                         return;
                     }
-                    const headers = rows.shift(); // Extract column headers
+                    const headers = rows.shift();
                     const data = rows.map(row => {
                         return {
                             Department: row[0] || '',
-                            Request: (row[1] || '').replace(/Total/gi, '').trim(), // Remove totals
-                            FY24_ACTUAL: row[2] || '',
-                            FY25_REQUESTED: row[3] || '',
-                            FY25_ACTUAL: row[4] || '',
+                            Request: (row[1] || '').replace(/Total/gi, '').trim(),
+                            FY24_ACTUAL: parseFloat(row[2]) || 0,
+                            FY25_REQUESTED: parseFloat(row[3]) || 0,
+                            FY25_ACTUAL: parseFloat(row[4]) || 0,
                             FY26_DEPT: row[5] || '',
-                            FY26_PROPOSED: row[6] || '',
-                            Dollar_Change: row[7] || '',
-                            Percent_Change: row[8] || ''
+                            FY26_PROPOSED: parseFloat(row[6]) || 0,
+                            Dollar_Change: parseFloat(row[7]) || 0,
+                            Percent_Change: parseFloat(row[8]) || 0
                         };
                     });
                     
                     const tableBody = document.querySelector("#budgetTable tbody");
                     const departmentFilter = document.querySelector("#departmentFilter");
                     const departments = new Set();
+                    let totalRequested = 0;
+                    let totalProposed = 0;
+                    let departmentTotals = {};
                     
                     function populateTable(filteredData = data) {
                         tableBody.innerHTML = "";
+                        totalRequested = 0;
+                        totalProposed = 0;
+                        departmentTotals = {};
+                        
                         filteredData.forEach(row => {
+                            totalRequested += row.FY25_REQUESTED;
+                            totalProposed += row.FY26_PROPOSED;
+                            if (!departmentTotals[row.Department]) {
+                                departmentTotals[row.Department] = { FY25: 0, FY26: 0 };
+                            }
+                            departmentTotals[row.Department].FY25 += row.FY25_REQUESTED;
+                            departmentTotals[row.Department].FY26 += row.FY26_PROPOSED;
+                            
                             const tr = document.createElement("tr");
                             tr.innerHTML = `
                                 <td>${row.Department}</td>
                                 <td>${row.Request}</td>
-                                <td>${row.FY24_ACTUAL}</td>
-                                <td>${row.FY25_REQUESTED}</td>
-                                <td>${row.FY25_ACTUAL}</td>
+                                <td>$${row.FY24_ACTUAL.toFixed(2)}</td>
+                                <td>$${row.FY25_REQUESTED.toFixed(2)}</td>
+                                <td>$${row.FY25_ACTUAL.toFixed(2)}</td>
                                 <td>${row.FY26_DEPT}</td>
-                                <td>${row.FY26_PROPOSED}</td>
-                                <td>${row.Dollar_Change}</td>
-                                <td>${row.Percent_Change}%</td>
+                                <td>$${row.FY26_PROPOSED.toFixed(2)}</td>
+                                <td>$${row.Dollar_Change.toFixed(2)}</td>
+                                <td>${row.Percent_Change.toFixed(2)}%</td>
                             `;
                             tableBody.appendChild(tr);
-                            if (row.Department) departments.add(row.Department);
                         });
-                        departmentFilter.innerHTML = `<option value="">All</option>` +
-                            Array.from(departments).map(dep => `<option value="${dep}">${dep}</option>`).join('');
+                        document.getElementById("totalRequested").textContent = `$${totalRequested.toFixed(2)}`;
+                        document.getElementById("totalProposed").textContent = `$${totalProposed.toFixed(2)}`;
                     }
                     
-                    window.filterTable = function() {
-                        const deptValue = departmentFilter.value.toLowerCase();
-                        const subcatValue = document.querySelector("#subcategoryFilter").value.toLowerCase();
-                        
-                        const filteredData = data.filter(row => 
-                            (deptValue === "" || row.Department.toLowerCase() === deptValue) &&
-                            (subcatValue === "" || row.Request.toLowerCase().includes(subcatValue))
-                        );
-                        populateTable(filteredData);
-                    }
-                    
-                    populateTable(); // Initially populate the table with all data
+                    populateTable();
                 })
                 .catch(error => console.error('Error loading CSV file:', error.message));
         });
